@@ -11,7 +11,12 @@ function generateToken(user) {
   });
 }
 
+function parseToken(token) {
+  token = jwt.verify(token, 'AKJOISDNFLKHALKNDSFIOHSLKJDSFLKHSDIOES')
+  return token
+}
+
 
 module.exports = {
-  generateToken
+  generateToken, parseToken
 }

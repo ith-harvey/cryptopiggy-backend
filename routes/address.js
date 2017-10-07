@@ -14,8 +14,14 @@ router.get('/user/:id', function(req, res, next) {
 })
 
 router.post('/', function(req, res, next) {
-  console.log(req.body)
-  const data = req.body
+
+  let token = utils.parseToken(req.body.token)
+
+  const data = {
+    address: req.body.address,
+    user_id: token.id.toString()
+  }
+  console.log(data)
   db('addresses').insert(data).then( response => {
     console.log('response', response)
     res.send(response)
