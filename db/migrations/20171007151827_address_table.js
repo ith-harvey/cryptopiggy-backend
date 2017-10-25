@@ -4,7 +4,7 @@ exports.up = function(knex) {
     table.increments()
     table.integer('user_id').notNullable().references('id').inTable('users').onDelete('CASCADE').index()
     table.string('address').notNullable()
-    table.string('ammount_in_wallet')
+    table.string('amount_in_wallet')
     table.timestamps(true, true)
   });
 }
