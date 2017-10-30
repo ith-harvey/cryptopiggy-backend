@@ -14,7 +14,6 @@ const eScanApiKey = process.env.ETHSCAN_TOKEN
 let priceOfEthUSD
 
 function getBalanceMultiAddress(addressArr) {
-  //addressArr cleanup
   var options = {
     uri: `${etherscanURL}module=account&action=balancemulti&address=${addressArr}&tag=latest&apikey=${eScanApiKey}`,
     headers: {
@@ -39,6 +38,8 @@ function mapEthPriceToAddressData(addressData, ArrofBalances, priceOfEthUSD) {
       totalUSD += addressChunk.amount_in_usd
       return addressChunk
     })
+
+  totalUSD = totalUSD.toFixed(2)
 
   return { totalCrypto, totalUSD, addressData }
 

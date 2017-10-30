@@ -19,10 +19,8 @@ router.post('/user', function (req, res, next) {
 
 router.get('/ethprice', function (req, res, next) {
   ethscan.getEthPrice().then( response => {
-
   res.send(response.result.ethusd)
   })
-
 })
 
 // Get balance of and return all addresses
