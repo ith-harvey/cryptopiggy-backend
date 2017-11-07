@@ -8,6 +8,9 @@ const bodyParser = require('body-parser')
 
 const auth = require('./routes/auth.js')
 const address = require('./routes/address.js')
+const address = require('./routes/portfolio.js')
+
+app.use(allowCrossDomain)
 
 app.use(bodyParser.json());
 
@@ -33,6 +36,7 @@ function allowCrossDomain(req, res, next) {
 // routes
 app.use('/auth', auth)
 app.use('/address', address)
+app.use('/portfolio', portfolio)
 app.get("/", function(req, res) {
   res.send('Welcome to root!')
 })

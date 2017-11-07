@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router();
-const db = require('../../db')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const rp = require('request-promise')
@@ -26,14 +25,19 @@ function getBalanceMultiAddress(addressArr) {
 
 function mapEthPriceToAddressData(addressData, ArrofBalances, priceOfEthUSD) {
 
+  // self contained function that turns WeiToEth
   const turnWeiToEth = balance => balance / Math.pow(10,18)
+
   let totalCrypto = 0, totalUSD = 0
+
   addressData = addressData.map( ( addressChunk, i ) => {
       let amountofEth = turnWeiToEth(ArrofBalances[i].balance)
 
 
       addressChunk.amount_in_wallet = amountofEth
+
       addressChunk.amount_in_usd = Number((amountofEth * priceOfEthUSD).toFixed(2))
+
       totalCrypto += addressChunk.amount_in_wallet
       totalUSD += addressChunk.amount_in_usd
       return addressChunk

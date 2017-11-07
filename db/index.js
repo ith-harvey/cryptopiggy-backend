@@ -1,6 +1,8 @@
-const env = process.env.NODE_ENV || 'development'
-const config = require('../knexfile')[env]
-const knex = require('knex')
-const connection = knex(config)
 
-module.exports = connection
+const Auth = require('./auth')
+const Address = require('./addresses')
+const Performancehistory = require('./performance-history')
+
+module.exports = {
+  Auth, Address, Performancehistory
+}
