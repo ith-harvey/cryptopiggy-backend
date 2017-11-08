@@ -1,5 +1,3 @@
-const express = require('express')
-const router = express.Router();
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const rp = require('request-promise')
@@ -51,7 +49,7 @@ function mapEthPriceToAddressData(addressData, ArrofBalances, priceOfEthUSD) {
 
 function getEthPrice() {
   //comparer can be: ethusd or ethbtc
-  var options = {
+  let options = {
     uri: `${etherscanURL}module=stats&action=ethprice&apikey=${eScanApiKey}`,
     headers: {
         'User-Agent': 'Request-Promise'
@@ -59,7 +57,6 @@ function getEthPrice() {
     json: true // Automatically parses the JSON string in the response
   };
   return rp(options)
-
 }
 
 

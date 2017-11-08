@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken');
-const utils = {
-  jwt : require('./utilfolder/jwtUtils'),
-  ethscan : require('./utilfolder/etherscan')
-  }
 
+// Utility functions
+const { jwtUtils } = require('./utilfolder')
+const { ethscan } = require('./utilfolder')
+
+// DB queries
 const { Address } = require('../../db')
 
 function balanceAndAllAddresses (id) {
@@ -12,33 +12,30 @@ function balanceAndAllAddresses (id) {
     if (response) {
       let addressData = response
 
-      //pull out addresses
-      const addressArr = response.map( obj => obj.address)
+      const addressArr = response.map( obj => obj.address) //pull out addresses
 
-    return Promise.all([
-        utils.ethscan.getEthPrice(),
-        utils.ethscan.getBalanceMultiAddress(addressArr)])
-
-      .then(values => {
-        let ethPriceinUSD = Number(values[0].result.ethusd)
+      return Promise.all([
+          ethscan.getEthPrice(),
+          ethscan.getBalanceMultiAddress(addressArr)])
+          .then(values => {
+            let ethPriceinUSD = Number(values[0].result.ethusd)
 
           // We send { totalCrypto, totalUSD, addressData } back
-        return  utils.ethscan.mapEthPriceToAddressData(
-                  addressData,
-                  values[1].result,
-                  ethPriceinUSD
-                )
-        })
+          return  ethscan.mapEthPriceToAddressData(
+                    addressData,
+                    values[1].result,
+                    ethPriceinUSD
+                  )
+          })
     }
   })
 }
 
 
 function balanceAddressesSetup (req, res, next) {
-  const id =  utils.jwt.parseToken(req.body.token).id.toString()
+  const id =  jwtUtils.parseToken(req.body.token).id.toString()
 
   balanceAndAllAddresses(id).then( values => {
-    console.log('idk wtf', values)
     res.send(values)
   })
   .catch(function (err) {
@@ -50,7 +47,7 @@ function balanceAddressesSetup (req, res, next) {
 
 function createAddress(req, res, next) {
   console.log('in create', req.body)
-  let token = utils.jwt.parseToken(req.body.token)
+  let token = jwtUtils.parseToken(req.body.token)
 
   const data = {
     address: req.body.address,

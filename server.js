@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 
 const auth = require('./routes/auth.js')
 const address = require('./routes/address.js')
-const address = require('./routes/portfolio.js')
+const portfolio = require('./routes/portfolio.js')
 
 app.use(allowCrossDomain)
 
