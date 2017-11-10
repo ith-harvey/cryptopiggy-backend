@@ -14,8 +14,8 @@ const db = pgp(connectionString);
 class Performancehistory extends Resource {
 
   static savePrice (data) {
-    return super.create(`(user_id, portfolio_value)
-      VALUES ('${data.user_id}', '${data.portfolio_value}');`)
+    return super.create(`(user_id, portfolio_value, amount_eth)
+      VALUES ('${data.user_id}', '${data.portfolio_value}', '${data.amount_eth}');`)
   }
 
   static getWindow(user_id, maxPerfWindow) {

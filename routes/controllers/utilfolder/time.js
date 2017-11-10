@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 class Time {
   constructor() {}
 
@@ -5,37 +7,37 @@ class Time {
 
     if (modifier) this.today = new Date(modifier)
     else this.today = new Date()
-
-    this.time = this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds();
   }
 
   static aYearAgo() {
     this.setup()
-    console.log('new attempting to get full year', this.today)
     let yearAgo = ((this.today.getFullYear()-1)+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
-    return `'${yearAgo} ${this.time}'`;
+    return `'${moment(yearAgo, 'YYYY-MM-DD').format('MM/DD/YYYY')}'`;
   }
 
   static twoWeeksAgo() {
     this.setup(+new Date - 12096e5)
-    console.log('new attempting to get two weeks year', this.today)
-    let yearAgo = ((this.today.getFullYear())+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
-    return `'${yearAgo} ${this.time}'`;
+    let twoWeekDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
+    return `'${moment(twoWeekDate, 'YYYY-MM-DD').format('MM/DD/YYYY')}'`;
   }
 
   static oneMonthAgo() {
     this.setup()
-    console.log('new attempting to one month ago', this.today)
-    let yearAgo = ((this.today.getFullYear())+'-'+(this.today.getMonth())+'-'+this.today.getDate());
-    return `'${yearAgo} ${this.time}'`;
+    let oneMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth())+'-'+this.today.getDate());
+    return `'${moment(oneMonthDate, 'YYYY-MM-DD').format('MM/DD/YYYY')}'`;
   }
 
   static sixMonthsAgo() {
     this.setup()
-    console.log('new attempting to get full year', this.today)
-    let yearAgo = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
-    return `'${yearAgo} ${this.time}'`;
+    let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
+    return `'${moment(sixMonthDate, 'YYYY-MM-DD').format('MM/DD/YYYY')}'`;
   }
+
+  static justDate(date) {
+    date = date.toString().split(' ').splice(1,3).join(' ')
+    return moment(date, "MMM DD YYYY").format('MM/DD/YYYY')
+  }
+
 }
 
  module.exports = Time

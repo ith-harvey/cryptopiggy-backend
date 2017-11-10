@@ -1,40 +1,29 @@
-
+const Time = require('./time')
+const moment = require('moment');
 
 function windowPerform(data, maxTimeWindow) {
 
-  let justdate = date => {
-    console.log('date being processed', date)
-     Number(date).setHours(0,0,0,0)
-  }
+  return data.reduce( (acum, priceHistObj) => {
+    // initialize the object
+    if (!acum.valueBackThen) acum.valueBackThen = null
+    if (!acum.windowData) acum.windowData = []
 
-  let returnObj = data.reduce( (acum, priceHistObj) => {
-
-    if (justdate(priceHistObj.created_at) === justdate(maxTimeWindow)) {
+    // if the maxTimewindow === the created_at price window set value
+    if (moment(Time.justDate(priceHistObj.created_at)).isSame(maxTimeWindow)) {
       acum.valueBackThen = priceHistObj.portfolio_value
     }
 
-    if (!acum.windowData) acum.windowData = []
-
-    if (maxTimeWindow <= priceHistObj.created_at) {
+    // if the maxTimewindow <= created_at price window, push into arr
+    if (moment(maxTimeWindow).isBefore(Time.justDate(priceHistObj.created_at))) {
       acum.windowData.push(
-        [ priceHistObj.created_at, priceHistObj.portfolio_value ]
+        { day: Time.justDate(priceHistObj.created_at),
+          value: Number(priceHistObj.portfolio_value),
+          amount_eth: Number(priceHistObj.amount_eth)}
       )
     }
-
-
     return acum
   }, {})
-
-console.log('AFTER REDUCE!!!!! ???????//// ///', returnObj)
-
 }
-
-
-// {
-//   value: 3000.00,
-//   data: [[created_at, portfolio_value: 24333]]
-//  },
-
 
 module.exports = {
   windowPerform

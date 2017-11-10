@@ -5,11 +5,11 @@ const { addresses: ctrl } = require('./routes/controllers')
 
 
 function arrayOfBalancePromises(users) {
-  return users.map( user => { //map returns Promises
+  return users.map( user => { //maps over users returns Promises
       return ctrl.balanceAndAllAddresses(user.id)
       .then(response => {
         //kick back our obj
-        return {user_id: user.id, portfolio_value: response.totalUSD}
+        return {user_id: user.id, portfolio_value: response.totalUSD, amount_eth: response.totalCrypto}
       })
   })
 }
@@ -35,6 +35,7 @@ function initiateTask() {
     // get back the array of objects we will insert {user_id, value}
     const insertPromiseArr = response.map( priceObj => {
         // insert to db
+        console.log('what we send to save price', priceObj)
         return Performancehistory.savePrice(priceObj)
     })
 
