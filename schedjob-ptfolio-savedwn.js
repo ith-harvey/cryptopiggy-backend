@@ -32,7 +32,7 @@ function initiateTask() {
   // run balance of All addresses
   getUsersAndBalanceForInsert().then(response => {
 
-    // get back the array of objects we will insert {user_id, value}
+    // get back the array of objects we will insert {user_id, value, amount_eth}
     const insertPromiseArr = response.map( priceObj => {
         // insert to db
         console.log('what we send to save price', priceObj)

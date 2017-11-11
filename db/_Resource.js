@@ -17,8 +17,8 @@ function ResourceFactory (table) {
       return db.any(`SELECT * FROM ${table}`)
     }
 
-    static findById (id) {
-      // return db(table).where({ id }).first()
+    static findById (body) {
+      return db.one(`SELECT * FROM ${table} WHERE ${body}`)
     }
 
     static findWhere (body) {

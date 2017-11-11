@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const moment = require('moment');
 
 const { jwtUtils } = require('./utilfolder')
 const { ethscan } = require('./utilfolder')
@@ -6,18 +7,22 @@ const { dataclean } = require('./utilfolder')
 const { Time } = require('./utilfolder')
 
 const { Performancehistory } = require('../../db')
+const { Auth } = require('../../db')
 
 
 function windowOfPerformance (req, res, next) {
   const id =  jwtUtils.parseToken(req.body.token).id.toString()
+  Auth.getUserById(id).then( response => {
+    const whenCreated = `'${moment(response.created_at, 'YYYY-MM-DD').format('MM/DD/YYYY')}'`
 
-  Performancehistory.getWindow(id, Time.aYearAgo()).then( result => {
+  Performancehistory.getWindow(id, whenCreated).then( result => {
 
     const returnObj = {
       twoWeeksAgo: dataclean.windowPerform(result, Time.twoWeeksAgo()),
       oneMonthAgo: dataclean.windowPerform(result, Time.oneMonthAgo()),
       sixMonthsAgo: dataclean.windowPerform(result, Time.oneMonthAgo()),
-      oneYearAgo: dataclean.windowPerform(result, Time.aYearAgo())
+      oneYearAgo: dataclean.windowPerform(result, Time.aYearAgo()),
+      whenCreated: dataclean.windowPerform(result, whenCreated)
     }
 
     res.send(returnObj)
@@ -41,6 +46,7 @@ function windowOfPerformance (req, res, next) {
           }
      }*/
 
+    })
   })
 }
 

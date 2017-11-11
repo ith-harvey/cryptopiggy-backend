@@ -10,6 +10,10 @@ class Auth extends Resource {
     return super.findWhere(`username = '${username}'`)
   }
 
+  static getUserById (id) {
+    return super.findById(`id = ${id}`)
+  }
+
   static createUser (user) {
     console.log('user', user)
     return super.create(`(username, hash_pass)
