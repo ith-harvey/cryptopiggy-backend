@@ -24,6 +24,15 @@ function getUsersAndBalanceForInsert() {
   })
 }
 
+function dateMinRounded() {
+    let date = new Date()
+    date.setHours(date.getHours() + Math.round(date.getMinutes()/60));
+    date.setMinutes(0);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+
+    return date.toISOString().slice(0, 19).replace('T', ' ')
+}
 
 // initiate the price history save down for all users
 function initiateTask() {
@@ -36,7 +45,7 @@ function initiateTask() {
     const insertPromiseArr = response.map( priceObj => {
         // insert to db
         console.log('what we send to save price', priceObj)
-        return Performancehistory.savePrice(priceObj)
+        return Performancehistory.savePrice(priceObj,dateMinRounded())
     })
 
     // execute all promises

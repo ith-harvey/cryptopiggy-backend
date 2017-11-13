@@ -13,15 +13,16 @@ const db = pgp(connectionString);
 
 class Performancehistory extends Resource {
 
-  static savePrice (data) {
-    return super.create(`(user_id, portfolio_value, amount_eth)
-      VALUES ('${data.user_id}', '${data.portfolio_value}', '${data.amount_eth}');`)
+  static savePrice (data, created_at) {
+    console.log('this was created_at', created_at)
+    return super.create(`(user_id, portfolio_value, amount_eth, created_at)
+      VALUES ('${data.user_id}', '${data.portfolio_value}', '${data.amount_eth}', '${created_at}');`)
   }
 
   static getWindow(user_id, maxPerfWindow) {
     return db.any(`SELECT * FROM performance_history
       WHERE user_id = ${user_id}
-      AND created_at >= ${maxPerfWindow};`)
+      AND created_at >= '${maxPerfWindow}';`)
   }
 
 

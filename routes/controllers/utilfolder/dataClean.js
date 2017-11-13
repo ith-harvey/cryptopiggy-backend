@@ -1,25 +1,42 @@
 const Time = require('./time')
 const moment = require('moment');
 
-function windowPerform(data, maxTimeWindow) {
+// two cases:
+// 1. for week/year/month/6month
+// 2 24 hours
 
+function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
+  let snapshotTime
   return data.reduce( (acum, priceHistObj) => {
+    snapshotTime = Time.reformat(priceHistObj.created_at)
+
     // initialize the object
     if (!acum.valueBackThen) acum.valueBackThen = null
     if (!acum.windowData) acum.windowData = []
 
+
     // if the maxTimewindow === the created_at price window set value
-    if (moment(Time.justDate(priceHistObj.created_at)).isSame(maxTimeWindow)) {
+    if (moment(snapshotTime).isSame(maxTimeWindow)) {
+      // console.log('snapshottime', snapshotTime)
+      // console.log('maxTimeWindow', maxTimeWindow)
       acum.valueBackThen = priceHistObj.portfolio_value
     }
 
     // if the maxTimewindow <= created_at price window, push into arr
-    if (moment(maxTimeWindow).isBefore(Time.justDate(priceHistObj.created_at))) {
-      acum.windowData.push(
-        { day: Time.justDate(priceHistObj.created_at),
-          value: Number(priceHistObj.portfolio_value),
-          amount_eth: Number(priceHistObj.amount_eth)}
-      )
+    if (moment(maxTimeWindow).isBefore(snapshotTime)) {
+
+      if (comparisonDaysVsHours === undefined) {
+        comparisonDaysVsHours = () => (Time.justTime(snapshotTime) === '12:00:00')
+      }
+
+      if (comparisonDaysVsHours()) {
+
+        acum.windowData.push({
+            day: snapshotTime,
+            value: Number(priceHistObj.portfolio_value),
+            amount_eth: Number(priceHistObj.amount_eth)
+          })
+      }
     }
     return acum
   }, {})

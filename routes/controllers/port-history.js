@@ -13,16 +13,22 @@ const { Auth } = require('../../db')
 function windowOfPerformance (req, res, next) {
   const id =  jwtUtils.parseToken(req.body.token).id.toString()
   Auth.getUserById(id).then( response => {
-    const whenCreated = `'${moment(response.created_at, 'YYYY-MM-DD').format('MM/DD/YYYY')}'`
+    const whenCreated = moment(response.created_at, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY hh:mm:ss')
 
   Performancehistory.getWindow(id, whenCreated).then( result => {
 
     const returnObj = {
-      twoWeeksAgo: dataclean.windowPerform(result, Time.twoWeeksAgo()),
+      aDayAgo: dataclean.windowPerform(result, Time.aDayAgo(), () => true),
+
+      oneWeekAgo: dataclean.windowPerform(result, Time.oneWeekAgo()),
+
       oneMonthAgo: dataclean.windowPerform(result, Time.oneMonthAgo()),
-      sixMonthsAgo: dataclean.windowPerform(result, Time.oneMonthAgo()),
+
+      sixMonthsAgo: dataclean.windowPerform(result, Time.sixMonthsAgo()),
+
       oneYearAgo: dataclean.windowPerform(result, Time.aYearAgo()),
-      whenCreated: dataclean.windowPerform(result, whenCreated)
+
+      whenCreated: dataclean.windowPerform(result, whenCreated, () => true)
     }
 
     res.send(returnObj)

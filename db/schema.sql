@@ -44,46 +44,145 @@ INSERT INTO addresses (ID, user_id, address)
   VALUES (4, 2, '0x38F913e25db0c796C47b0c0A3d25Cf654e982d51');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-10-25 12:36:53.71262', '2.53', '30.00000');
+  VALUES (1, '2017-11-12 00:00:00', '2.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-10-26 12:36:53.71262', '5.53', '30.00000');
+  VALUES (1, '2017-11-12 01:00:00', '5.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-10-27 12:36:53.71262', '10.53', '30.00000');
+  VALUES (1, '2017-11-12 02:00:00', '11.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-10-28 12:36:53.71262', '25.53', '30.00000');
+  VALUES (1, '2017-11-12 03:00:00', '12.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-10-29 12:36:53.71262', '20.53', '30.00000');
+  VALUES (1, '2017-11-12 04:00:00', '20.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-10-30 12:36:53.71262', '80.53', '30.00000');
+  VALUES (1, '2017-11-12 05:00:00', '80.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-10-31 12:36:53.71262', '65.53', '30.00000');
+  VALUES (1, '2017-11-12 06:00:00', '65.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-11-01 12:36:53.71262', '82.53', '30.00000');
+  VALUES (1, '2017-11-12 07:00:00', '82.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-11-02 12:36:53.71262', '98.53', '30.00000');
+  VALUES (1, '2017-11-12 08:00:00', '98.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-11-03 12:36:53.71262', '90.53', '30.00000');
+  VALUES (1, '2017-11-12 09:00:00', '90.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-11-04 12:36:53.71262', '120.53', '30.00000');
+  VALUES (1, '2017-11-12 10:00:00', '120.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-11-05 12:36:53.71262', '160.53', '30.00000');
+  VALUES (1, '2017-11-12 11:00:00', '160.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-11-06 12:36:53.71262', '130.53', '30.00000');
+  VALUES (1, '2017-11-12 12:00:00', '130.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-11-07 12:36:53.71262', '180.53', '30.00000');
+  VALUES (1, '2017-11-12 13:00:00', '180.53', '30.00000');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
-  VALUES (1, '2017-11-08 12:36:53.71262', '190.53', '30.00000');
+  VALUES (1, '2017-11-12 14:00:00', '190.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-12 15:00:00', '160.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-12 16:00:00', '188.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-12 17:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-12 18:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-12 19:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-12 20:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-12 21:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-12 22:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-12 23:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 00:00:00', '2.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 01:00:00', '5.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 02:00:00', '11.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 03:00:00', '13.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 04:00:00', '20.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 05:00:00', '80.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 06:00:00', '65.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 07:00:00', '82.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 08:00:00', '98.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 09:00:00', '90.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 10:00:00', '120.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 11:00:00', '160.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 12:00:00', '130.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 13:00:00', '180.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 14:00:00', '190.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 15:00:00', '160.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 16:00:00', '188.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 17:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 18:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 19:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 20:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 21:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 22:00:00', '192.53', '30.00000');
+
+INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+  VALUES (1, '2017-11-13 23:00:00', '192.53', '30.00000');
