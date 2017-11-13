@@ -15,37 +15,37 @@ class Time {
   static aYearAgo() {
     this.setup()
     let yearAgo = ((this.today.getFullYear()-1)+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
-    return moment(yearAgo, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY hh:mm:ss');
+    return moment(yearAgo, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static oneWeekAgo() {
     this.setup(+new Date - 604800000)
     let oneWeekAgo = ((this.today.getFullYear())+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
-    return moment(oneWeekAgo, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY hh:mm:ss');
+    return moment(oneWeekAgo, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static aDayAgo() {
     this.setup(+new Date - 864e5)
     let aDayAgo = ((this.today.getFullYear())+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate()+' '+this.today.getHours()+':'+this.today.getMinutes()+':'+this.today.getSeconds());
 
-    return moment(aDayAgo, 'YYYY-MM-DD hh:mm:ss').startOf('hour').format('MM/DD/YYYY hh:mm:ss');
+    return moment(aDayAgo, 'YYYY-MM-DD HH:mm:ss').startOf('hour').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static oneMonthAgo() {
     this.setup()
     let oneMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth())+'-'+this.today.getDate());
-    return moment(oneMonthDate, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY hh:mm:ss');
+    return moment(oneMonthDate, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static sixMonthsAgo() {
     this.setup()
     let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
-    return moment(sixMonthDate, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY hh:mm:ss');
+    return moment(sixMonthDate, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static reformat(date) {
     date = date.toString().split(' ').splice(1,4).join(' ')
-    return moment(date, "MMM DD YYYY hh:mm:ss").format('MM/DD/YYYY hh:mm:ss')
+    return moment(date, "MMM DD YYYY HH:mm:ss").format('MM/DD/YYYY HH:mm:ss')
   }
 
   static justTime(date) {
