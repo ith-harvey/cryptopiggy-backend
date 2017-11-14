@@ -26,8 +26,7 @@ function ResourceFactory (table) {
     }
 
     static create (body) {
-      console.log(`INSERT INTO ${table}${body}`)
-      return db.none(`INSERT INTO ${table}${body}`)
+      return db.one(`INSERT INTO ${table}${body}`)
     }
 
     static createWhere (body, id) {

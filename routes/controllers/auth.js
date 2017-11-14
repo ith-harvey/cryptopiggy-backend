@@ -55,6 +55,7 @@ function signUp (req, res, next) {
       });
     } else {
       Auth.createUser(user).then( response => {
+        user.id = response.id
         delete user.hash_pass
         const token = jwt.sign(user, 'AKJOISDNFLKHALKNDSFIOHSLKJDSFLKHSDIOES');
         res.json({

@@ -8,7 +8,7 @@ class Address extends Resource {
 
   static create (data) {
     return super.create(`(user_id, address)
-      VALUES ('${data.user_id}', '${data.address}')`)
+      VALUES ('${data.user_id}', '${data.address}') RETURNING ID`)
   }
 
   static delete (id) {

@@ -58,6 +58,7 @@ function createAddress(req, res, next) {
       console.log('the post was success added')
       res.send('address was successfully added!')
   }).catch(error => {
+    console.log('error', error)
     res.status(500).send(error)
   })
 }

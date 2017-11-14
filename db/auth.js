@@ -15,9 +15,8 @@ class Auth extends Resource {
   }
 
   static createUser (user) {
-    console.log('user', user)
     return super.create(`(username, hash_pass)
-      VALUES ('${user.username}', '${user.hash_pass}')`)
+      VALUES ('${user.username}', '${user.hash_pass}') RETURNING ID`)
   }
 }
 
