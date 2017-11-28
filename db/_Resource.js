@@ -6,7 +6,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = `"postgresql://cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432";`
+var connectionString = `"postgresql://postgres:postgres@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com/crypto_piggy";`
 var db = pgp(connectionString);
 
 function ResourceFactory (table) {
