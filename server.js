@@ -38,6 +38,7 @@ app.use('/auth', auth)
 app.use('/address', address)
 app.use('/portfolio', portfolio)
 app.get("/", function(req, res) {
+  console.log('hitting root!!!!')
   res.send('Welcome to root!')
 })
 
