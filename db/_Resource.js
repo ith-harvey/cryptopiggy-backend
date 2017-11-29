@@ -1,12 +1,14 @@
-var promise = require('bluebird');
+const promise = require('bluebird');
 
-var options = {
+require('dotenv').config()
+
+const options = {
   // Initialization Options
   promiseLib: promise
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = "postgresql://postgres:postgres@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy";
+var connectionString = `"postgresql://${process.env.POSTGRESQL_USERANDPASS}@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy";`
 var db = pgp(connectionString);
 
 function ResourceFactory (table) {

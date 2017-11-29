@@ -1,5 +1,6 @@
 const Resource = require('./_Resource')('performance_history')
 const promise = require('bluebird');
+require('dotenv').config()
 
 const options = {
   // Initialization Options
@@ -7,7 +8,7 @@ const options = {
 };
 
 const pgp = require('pg-promise')(options);
-const connectionString = "postgresql://postgres:postgres@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy";
+const connectionString = `"postgresql://${process.env.POSTGRESQL_USERANDPASS}@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy";`
 const db = pgp(connectionString);
 
 
