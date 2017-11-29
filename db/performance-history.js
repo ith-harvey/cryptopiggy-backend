@@ -8,7 +8,7 @@ const options = {
 };
 console.log('what we need', process.env.POSTGRESQL_USERANDPASS)
 const pgp = require('pg-promise')(options);
-const connectionString = `"postgresql://${process.env.POSTGRESQL_USERANDPASS}@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy";`
+const connectionString = `postgresql://${process.env.POSTGRESQL_USERANDPASS}@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy`
 const db = pgp(connectionString);
 
 

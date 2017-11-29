@@ -8,7 +8,7 @@ const options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = `"postgresql://${process.env.POSTGRESQL_USERANDPASS}@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy";`
+var connectionString = `postgresql://${process.env.POSTGRESQL_USERANDPASS}@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy`
 var db = pgp(connectionString);
 
 function ResourceFactory (table) {
@@ -28,7 +28,7 @@ function ResourceFactory (table) {
     }
 
     static create (body) {
-      return db.one(`INSERT INTO ${table}${body}`)
+      return db.any(`INSERT INTO ${table}${body}`)
     }
 
     static createWhere (body, id) {
