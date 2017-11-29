@@ -5,9 +5,9 @@ console.log('running')
 function gitPull() {
   exec('git pull')
 
-  exec('killall node')
+  exec('pm2 stop server.js')
 
-  exec('node server.js', (error, stdout, stderr) => {
+  exec('pm2 start server.js', (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return;
