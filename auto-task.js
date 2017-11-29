@@ -3,9 +3,8 @@ console.log('running')
 
 
 function gitPull() {
-  exec('git pull')
 
-  exec('pm2 restart server.js', (error, stdout, stderr) => {
+  exec('git pull', (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return;
