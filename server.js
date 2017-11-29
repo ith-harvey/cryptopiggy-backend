@@ -40,13 +40,13 @@ app.use('/address', address)
 app.use('/portfolio', portfolio)
 
 app.post("/dev/pullanddeploy", function(req, res) {
-  console.log('nathaniel')
+  console.log('updated with new commands')
   autoTask.gitPull()
   res.send('task complete.')
 })
 
 app.get("/", function(req, res) {
-  console.log('hitting root!!!! post code change')
+  console.log('updated with new commands')
   res.send('Welcome to root!')
 })
 

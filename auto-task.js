@@ -3,7 +3,11 @@ console.log('running')
 
 
 function gitPull() {
-  exec('git pull', (error, stdout, stderr) => {
+  exec('git pull')
+
+  exec('^c')
+
+  exec('node server.js', (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return;
