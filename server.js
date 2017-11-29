@@ -39,8 +39,8 @@ app.use('/auth', auth)
 app.use('/address', address)
 app.use('/portfolio', portfolio)
 
-app.get("/dev/pullanddeploy", function(req, res) {
-  console.log('new things!!')
+app.post("/dev/pullanddeploy", function(req, res) {
+  console.log('taco bell')
   autoTask.gitPull()
   res.send('task complete.')
 })
