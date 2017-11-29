@@ -4,6 +4,7 @@ const app = express()
 const port = 80
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser')
+const autoTask = require('./auto-task.js')
 
 
 const auth = require('./routes/auth.js')
@@ -37,6 +38,12 @@ function allowCrossDomain(req, res, next) {
 app.use('/auth', auth)
 app.use('/address', address)
 app.use('/portfolio', portfolio)
+
+app.get("/dev/pullanddeploy", function(req, res) {
+  autoTask.gitPull()
+  res.send('task complete.')
+})
+
 app.get("/", function(req, res) {
   console.log('hitting root!!!!')
   res.send('Welcome to root!')
