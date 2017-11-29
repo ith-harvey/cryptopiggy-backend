@@ -47,7 +47,7 @@ app.post("/dev/pullanddeploy", function(req, res) {
 
 app.get("/", function(req, res) {
   console.log('taco')
-  res.send('Welcome to root! pow')
+  res.send('Welcome to root! sneak')
 })
 
 
