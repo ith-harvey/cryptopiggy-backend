@@ -5,7 +5,7 @@ console.log('running')
 function gitPull() {
   exec('git pull')
 
-  exec('^c')
+  exec('^C')
 
   exec('node server.js', (error, stdout, stderr) => {
     if (error) {
