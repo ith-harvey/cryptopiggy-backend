@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 // Utility functions
 const { jwtUtils } = require('./utilfolder')
