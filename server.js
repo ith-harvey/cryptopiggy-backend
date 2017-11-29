@@ -40,6 +40,7 @@ app.use('/address', address)
 app.use('/portfolio', portfolio)
 
 app.get("/dev/pullanddeploy", function(req, res) {
+  console.log('new things!!')
   autoTask.gitPull()
   res.send('task complete.')
 })
@@ -55,7 +56,6 @@ app.listen(port, function(error) {
   if (error) {
     console.error(error)
   } else {
-    console.log('//// //// /// //// // it updated! or did it, I donno you tell me!!!)
     console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
   }
 })
