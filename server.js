@@ -40,7 +40,7 @@ app.use('/address', address)
 app.use('/portfolio', portfolio)
 
 app.post("/dev/pullanddeploy", function(req, res) {
-  console.log('taco bell')
+  console.log('bangers')
   autoTask.gitPull()
   res.send('task complete.')
 })
