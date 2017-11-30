@@ -6,9 +6,12 @@ const options = {
   // Initialization Options
   promiseLib: promise
 };
-console.log('what we need', process.env.POSTGRESQL_USERANDPASS)
+
 const pgp = require('pg-promise')(options);
+
+console.log('what our user is', process.env.POSTGRESQL_USERANDPASS)
 const connectionString = `postgresql://${process.env.POSTGRESQL_USERANDPASS}@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy`
+
 const db = pgp(connectionString);
 
 
