@@ -35,6 +35,7 @@ function signIn (req, res, next) {
        });
      })
   }).catch( err => {
+    console.log('what error we get !!!!!!', err)
     console.log(err);
   })
 }
