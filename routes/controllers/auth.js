@@ -4,10 +4,9 @@ const jwt = require('jsonwebtoken');
 const { Auth } = require('../../db')
 
 function signIn (req, res, next) {
-  console.log('what is being sent', req.body)
   Auth.getUserByUsername(req.body.username).then( user => {
     user = user[0]
-
+    console.log('what we get !!!!!!', req.body)
     if (!user) {
       res.status(401).json({
         error: true,
