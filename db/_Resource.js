@@ -24,6 +24,7 @@ function ResourceFactory (table) {
     }
 
     static findWhere (body) {
+      console.log('what we are looking for::: ', `SELECT * FROM ${table} WHERE ${body}`)
       return db.any(`SELECT * FROM ${table} WHERE ${body}`)
     }
 
