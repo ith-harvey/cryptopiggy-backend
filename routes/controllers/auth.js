@@ -6,7 +6,7 @@ const { Auth } = require('../../db')
 function signIn (req, res, next) {
   Auth.getUserByUsername(req.body.username).then( user => {
     user = user[0]
-    console.log('what we get !!!!!!', req.body)
+    console.log('what we get !!!!!!', user)
     if (!user) {
       res.status(401).json({
         error: true,
