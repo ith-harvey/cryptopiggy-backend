@@ -9,9 +9,7 @@ const options = {
 
 var pgp = require('pg-promise')(options);
 
-console.log('what our user is',process.env.POSTGRESQL_USERANDPASS)
-
-var connectionString = `postgresql://${process.env.POSTGRESQL_USERANDPASS}@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy`
+var connectionString = `postgres://localhost/crypto_piggy`
 var db = pgp(connectionString);
 
 function ResourceFactory (table) {

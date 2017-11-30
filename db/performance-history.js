@@ -9,8 +9,7 @@ const options = {
 
 const pgp = require('pg-promise')(options);
 
-console.log('what our user is', process.env.POSTGRESQL_USERANDPASS)
-const connectionString = `postgresql://${process.env.POSTGRESQL_USERANDPASS}@cryptopiggy.chxcs4xgieuk.us-west-1.rds.amazonaws.com:5432/crypto_piggy`
+const connectionString = `postgres://localhost/crypto_piggy`
 
 const db = pgp(connectionString);
 
