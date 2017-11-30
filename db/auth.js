@@ -7,7 +7,7 @@ class Auth extends Resource {
   }
 
   static getUserByUsername (username) {
-    return super.findWhere(`username = '${username}'`)
+    return super.findWhere(`username = ${username}`)
   }
 
   static getUserById (id) {
