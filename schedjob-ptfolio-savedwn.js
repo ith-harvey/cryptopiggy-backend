@@ -8,17 +8,20 @@ function arrayOfBalancePromises(users) {
   return users.map( user => { //maps over users returns Promises
       return ctrl.balanceAndAllAddresses(user.id)
       .then(response => {
-        //kick back our obj
+        // console.log('does it get in here??', {user_id: user.id, portfolio_value: response.totalUSD, amount_eth: response.totalCrypto})
+        //kick back our ob
         return {user_id: user.id, portfolio_value: response.totalUSD, amount_eth: response.totalCrypto}
+      }).catch(err =>{
+        console.log('error!!!', err)
       })
   })
 }
 
-
 function getUsersAndBalanceForInsert() {
   return Auth.getAllUsers().then(users => {
-
+    // console.log('here are all the users', users)
     return Promise.all(arrayOfBalancePromises(users)).then( data => {
+      // console.log('arrayOfBalancePromises??', data)
       return data //return all of our objects
     })
   })
@@ -36,22 +39,22 @@ function dateMinRounded() {
 
 // initiate the price history save down for all users
 function initiateTask() {
-  console.log('running job')
+  // console.log('running job')
 
   // run balance of All addresses
   getUsersAndBalanceForInsert().then(response => {
-
+    // console.log('what we send to save price', response)
     // get back the array of objects we will insert {user_id, value, amount_eth}
     const insertPromiseArr = response.map( priceObj => {
         // insert to db
-        console.log('what we send to save price', priceObj)
+        // console.log('what we send to save price', priceObj)
         return Performancehistory.savePrice(priceObj,dateMinRounded())
     })
 
     // execute all promises
     Promise.all([insertPromiseArr]).then( (success, fail) => {
-      console.log('success!', success)
-      console.log('failed', fail)
+      if(fail) console.log('it failed!!!')
+      else console.log('success!')
     })
 
   })

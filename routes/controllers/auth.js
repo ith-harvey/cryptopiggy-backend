@@ -49,6 +49,7 @@ function signUp (req, res, next) {
   };
 
   Auth.getUserByUsername(user.username).then(response => {
+    console.log('checking if username exists:  ', response)
     if (response.length) {
       res.status(401).json({
         error: true,
@@ -56,8 +57,9 @@ function signUp (req, res, next) {
       });
     } else {
       Auth.createUser(user).then( response => {
-        user.id = response.id
+        user.id = response[0].id
         delete user.hash_pass
+        console.log('the user has successfully been created:  ', user)
         const token = jwt.sign(user, 'AKJOISDNFLKHALKNDSFIOHSLKJDSFLKHSDIOES');
         res.json({
            user: user,

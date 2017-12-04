@@ -7,9 +7,10 @@ const options = {
   promiseLib: promise
 };
 
-var pgp = require('pg-promise')(options);
+const pgp = require('pg-promise')(options);
 
-var connectionString = `postgres://localhost/crypto_piggy`
+const connectionString = `postgres://localhost/crypto_piggy`
+
 var db = pgp(connectionString);
 
 function ResourceFactory (table) {
@@ -25,7 +26,6 @@ function ResourceFactory (table) {
     }
 
     static findWhere (body) {
-      console.log('what we are looking for::: ', `SELECT * FROM ${table} WHERE ${body}`)
       return db.any(`SELECT * FROM ${table} WHERE ${body}`)
     }
 
