@@ -25,23 +25,23 @@ CREATE TABLE performance_history (
   amount_eth VARCHAR NOT NULL
 );
 
-INSERT INTO users (ID, username, hash_pass, created_at)
-  VALUES (1, 'ianh', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6', '2017-11-12 00:00:00');
+INSERT INTO users (username, hash_pass, created_at)
+  VALUES ('ianh', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6', '2017-11-12 00:00:00');
 
-INSERT INTO users (ID, username, hash_pass)
-    VALUES (2, 'sam', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6');
+INSERT INTO users (username, hash_pass)
+    VALUES ('sam', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6');
 
-INSERT INTO addresses (ID, user_id, address)
-  VALUES (1, 1, '0x64042ba68b12d4c151651ca2813b7352bd56f08e');
+INSERT INTO addresses (user_id, address)
+  VALUES (1, '0x64042ba68b12d4c151651ca2813b7352bd56f08e');
 
-INSERT INTO addresses (ID, user_id, address)
-    VALUES (2, 1, '0x9644d964867ace0534559a5435a1d780a25cf03a');
+INSERT INTO addresses (user_id, address)
+    VALUES (1, '0x9644d964867ace0534559a5435a1d780a25cf03a');
 
-INSERT INTO addresses (ID, user_id, address)
-  VALUES (3, 2, '0xac223b118852b90d63052b3f3e203c3dAe4644C0');
+INSERT INTO addresses (user_id, address)
+  VALUES (2, '0xac223b118852b90d63052b3f3e203c3dAe4644C0');
 
-INSERT INTO addresses (ID, user_id, address)
-  VALUES (4, 2, '0x38F913e25db0c796C47b0c0A3d25Cf654e982d51');
+INSERT INTO addresses (user_id, address)
+  VALUES (2, '0x38F913e25db0c796C47b0c0A3d25Cf654e982d51');
 
 INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
   VALUES (1, '2017-11-12 00:00:00', '2.53', '30.00000');

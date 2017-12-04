@@ -46,14 +46,14 @@ function balanceAddressesSetup (req, res, next) {
 
 
 function createAddress(req, res, next) {
-  console.log('in create', req.body)
+
   let token = jwtUtils.parseToken(req.body.token)
 
   const data = {
     address: req.body.address,
     user_id: token.id.toString()
   }
-
+  console.log('in create', data)
   Address.create(data).then(() => {
       console.log('the post was success added')
       res.send('address was successfully added!')
