@@ -24,6 +24,12 @@ class Time {
     return moment(oneWeekAgo, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
+  static twoWeeksAgo() {
+    this.setup(+new Date - 1209600000)
+    let twoWeeksAgo = ((this.today.getFullYear())+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
+    return moment(twoWeeksAgo, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
+  }
+
   static aDayAgo() {
     this.setup(+new Date - 864e5)
     let aDayAgo = ((this.today.getFullYear())+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate()+' '+this.today.getHours()+':'+this.today.getMinutes()+':'+this.today.getSeconds());

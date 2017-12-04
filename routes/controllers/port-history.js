@@ -17,10 +17,21 @@ function windowOfPerformance (req, res, next) {
 
   Performancehistory.getWindow(id, whenCreated).then( result => {
 
+
+    let whnCreateLstArg
+
+    // if whenCreated is before 2 weeks ago -> track hourly
+    // else -> track daily
+    if (moment(whenCreated).isSameOrBefore(Time.twoWeeksAgo())) {
+      whnCreateLstArg = undefined
+    } else {
+      whnCreateLstArg = () => true
+    }
+
     const returnObj = {
       aDayAgo: dataclean.windowPerform(result, Time.aDayAgo(), () => true),
 
-      oneWeekAgo: dataclean.windowPerform(result, Time.oneWeekAgo()),
+      oneWeekAgo: dataclean.windowPerform(result,Time.oneWeekAgo(),() => true),
 
       oneMonthAgo: dataclean.windowPerform(result, Time.oneMonthAgo()),
 
@@ -28,7 +39,7 @@ function windowOfPerformance (req, res, next) {
 
       oneYearAgo: dataclean.windowPerform(result, Time.aYearAgo()),
 
-      whenCreated: dataclean.windowPerform(result, whenCreated)
+      whenCreated: dataclean.windowPerform(result, whenCreated, whnCreateLstArg)
     }
 
     res.send(returnObj)
