@@ -1,3 +1,6 @@
+
+process.env.POSTGRESQL_USERANDPASS = 'postgres:tacobelllilly'
+
 const { Auth } = require('./db')
 const { Performancehistory } = require('./db')
 
