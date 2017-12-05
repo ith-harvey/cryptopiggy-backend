@@ -25,8 +25,8 @@ CREATE TABLE performance_history (
   amount_eth VARCHAR NOT NULL
 );
 
-INSERT INTO users (username, hash_pass, created_at)
-  VALUES ('ianh', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6', '2017-12-04 00:00:00');
+INSERT INTO users (username, hash_pass)
+  VALUES ('ianh', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6');
 
 INSERT INTO users (username, hash_pass)
     VALUES ('sam', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6');
