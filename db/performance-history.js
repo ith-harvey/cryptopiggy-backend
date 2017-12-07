@@ -18,7 +18,7 @@ const db = pgp(connectionString);
 class Performancehistory extends Resource {
 
   static savePrice (data, created_at) {
-    console.log('data coming in!! ',data)
+    console.log('data coming in!! ', data)
     return super.create(`(user_id, portfolio_value, amount_eth, created_at)
       VALUES ('${data.user_id}', '${data.portfolio_value}', '${data.amount_eth}', '${created_at}');`)
   }

@@ -13,7 +13,10 @@ const { Auth } = require('../../db')
 function windowOfPerformance (req, res, next) {
   const id =  jwtUtils.parseToken(req.body.token).id.toString()
   Auth.getUserById(id).then( response => {
-    const whenCreated = moment(response.created_at, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY hh:mm:ss')
+    console.log('whenCreated resp', response)
+
+    let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).format('MM/DD/YYYY hh:mm:ss')
+    console.log('after adjust:', whenCreated)
 
   Performancehistory.getWindow(id, whenCreated).then( result => {
 
@@ -31,7 +34,7 @@ function windowOfPerformance (req, res, next) {
     const returnObj = {
       aDayAgo: dataclean.windowPerform(result, Time.aDayAgo(), () => true),
 
-      oneWeekAgo: dataclean.windowPerform(result,Time.oneWeekAgo(),() => true),
+      oneWeekAgo: dataclean.windowPerform(result,Time.oneWeekAgo()),
 
       oneMonthAgo: dataclean.windowPerform(result, Time.oneMonthAgo()),
 
@@ -42,6 +45,7 @@ function windowOfPerformance (req, res, next) {
       whenCreated: dataclean.windowPerform(result, whenCreated, whnCreateLstArg)
     }
 
+    console.log('what we send over', returnObj)
     res.send(returnObj)
 
     /*final returnObj = {
