@@ -17,7 +17,15 @@ CREATE TABLE addresses (
   created_at timestamp default current_timestamp
 );
 
-CREATE TABLE performance_history (
+CREATE TABLE performance_history_hourly (
+  ID SERIAL PRIMARY KEY,
+  user_id integer REFERENCES users (ID) NOT NULL,
+  created_at timestamp default current_timestamp,
+  portfolio_value VARCHAR NOT NULL,
+  amount_eth VARCHAR NOT NULL
+);
+
+CREATE TABLE performance_history_daily (
   ID SERIAL PRIMARY KEY,
   user_id integer REFERENCES users (ID) NOT NULL,
   created_at timestamp default current_timestamp,
@@ -45,9 +53,9 @@ INSERT INTO addresses (user_id, address)
 
 
 
-INSERT INTO performance_history (user_id, created_at, portfolio_value, amount_eth)
+INSERT INTO performance_history_hourly (user_id, created_at, portfolio_value, amount_eth)
 
-SELECT 1, generate_series('2016-10-05 12:00:00'::date,'2017-12-07 01:26:00'::date,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
+SELECT 1, generate_series('2016-10-05 12:00:00'::date,'2017-12-08 12:00:00'::date,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
 
   -- SELECT generate_series('2017-12-05 12:00:00','2018-1-05 12:00:00','1 hour')
 

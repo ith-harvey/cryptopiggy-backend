@@ -2,7 +2,7 @@
 process.env.POSTGRESQL_USERANDPASS = 'postgres:tacobelllilly'
 
 const { Auth } = require('./db')
-const { Performancehistory } = require('./db')
+const { PerformanceHistoryHourly } = require('./db')
 
 const { addresses: ctrl } = require('./routes/controllers')
 

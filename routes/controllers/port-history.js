@@ -6,7 +6,7 @@ const { ethscan } = require('./utilfolder')
 const { dataclean } = require('./utilfolder')
 const { Time } = require('./utilfolder')
 
-const { Performancehistory } = require('../../db')
+const { PerformanceHistoryHourly } = require('../../db')
 const { Auth } = require('../../db')
 
 
@@ -18,7 +18,7 @@ function windowOfPerformance (req, res, next) {
     let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).format('MM/DD/YYYY hh:mm:ss')
     console.log('after adjust:', whenCreated)
 
-  Performancehistory.getWindow(id, whenCreated).then( result => {
+  PerformanceHistoryHourly.getWindow(id, whenCreated).then( result => {
 
 
     let whnCreateLstArg

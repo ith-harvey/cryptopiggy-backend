@@ -1,4 +1,4 @@
-const Resource = require('./_Resource')('performance_history')
+const Resource = require('./_Resource')('performance_history_daily')
 const promise = require('bluebird');
 require('dotenv').config()
 
@@ -15,7 +15,7 @@ const connectionString = `postgresql://${process.env.POSTGRESQL_USERANDPASS}@cry
 
 const db = pgp(connectionString);
 
-class Performancehistory extends Resource {
+class PerformanceHistoryDaily extends Resource {
 
   static savePrice (data, created_at) {
     console.log('data coming in!! ', data)
@@ -24,12 +24,10 @@ class Performancehistory extends Resource {
   }
 
   static getWindow(user_id, maxPerfWindow) {
-    return db.any(`SELECT * FROM performance_history
+    return db.any(`SELECT * FROM performance_history_daily
       WHERE user_id = ${user_id}
       AND created_at >= '${maxPerfWindow}';`)
   }
-
-
 }
 
-module.exports = Performancehistory
+module.exports = PerformanceHistoryDaily

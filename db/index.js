@@ -1,8 +1,9 @@
 
 const Auth = require('./auth')
 const Address = require('./addresses')
-const Performancehistory = require('./performance-history')
+const PerformanceHistoryHourly = require('./performance-history-hourly')
+const PerformanceHistoryDaily = require('./performance-history-daily')
 
 module.exports = {
-  Auth, Address, Performancehistory
+  Auth, Address, PerformanceHistoryHourly, PerformanceHistoryDaily
 }
