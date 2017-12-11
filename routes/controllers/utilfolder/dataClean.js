@@ -60,7 +60,7 @@ function avgDailyToWeekly(dailyAvgData) {
         user_id : currVal.user_id,
         portfolio_value : Number(currVal.portfolio_value),
         amount_eth : Number(currVal.amount_eth),
-        created_at: currVal.created_at
+        created_at: new Date(currVal.created_at.setDate(1))
       }
     }
 
