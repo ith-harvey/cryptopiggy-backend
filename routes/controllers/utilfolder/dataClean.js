@@ -5,7 +5,7 @@ const moment = require('moment');
 // 1. for week/year/month/6month
 // 2. 24 hours
 
-function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
+function windowPerform(data, maxTimeWindow, comparisonDaysVsHours, xAxisInterval) {
   console.log('running!!!')
 
   let snapshotTime
@@ -16,7 +16,7 @@ function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
     // initialize the object
     if (!acum.valueBackThen) acum.valueBackThen = null
     if (!acum.windowData) acum.windowData = []
-    if (!acum.xAxisInterval) acum.xAxisInterval = 'hourly'
+    if (!acum.xAxisInterval) acum.xAxisInterval = xAxisInterval
 
 
     // if the maxTimewindow === the created_at price window set value
@@ -30,7 +30,6 @@ function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
 
       if (comparisonDaysVsHours === undefined) {
         comparisonDaysVsHours = () => (Time.justTime(snapshotTime) === '00:00:00')
-        if (acum.xAxisInterval === 'hourly') acum.xAxisInterval = 'monthly'
       }
 
       if (comparisonDaysVsHours()) { //return arr filled with days or hours
