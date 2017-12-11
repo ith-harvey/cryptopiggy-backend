@@ -7,6 +7,7 @@ const { dataclean } = require('./utilfolder')
 const { Time } = require('./utilfolder')
 
 const { PerformanceHistoryHourly } = require('../../db')
+const { PerformanceHistoryDaily } = require('../../db')
 const { Auth } = require('../../db')
 
 
@@ -18,56 +19,57 @@ function windowOfPerformance (req, res, next) {
     let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).format('MM/DD/YYYY hh:mm:ss')
     console.log('after adjust:', whenCreated)
 
-  PerformanceHistoryHourly.getWindow(id, whenCreated).then( result => {
+  PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
+    PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
+      console.log('daily result: ', dailyResult)
+      let whnCreateLstArg
 
+      // if whenCreated is before 2 weeks ago -> track hourly
+      // else -> track daily
+      if (moment(whenCreated).isSameOrBefore(Time.twoWeeksAgo())) {
+        whnCreateLstArg = undefined
+      } else {
+        whnCreateLstArg = () => true
+      }
 
-    let whnCreateLstArg
+      const returnObj = {
+        aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(), () => true),
 
-    // if whenCreated is before 2 weeks ago -> track hourly
-    // else -> track daily
-    if (moment(whenCreated).isSameOrBefore(Time.twoWeeksAgo())) {
-      whnCreateLstArg = undefined
-    } else {
-      whnCreateLstArg = () => true
-    }
+        oneWeekAgo: dataclean.windowPerform(dailyResult,Time.oneWeekAgo()),
 
-    const returnObj = {
-      aDayAgo: dataclean.windowPerform(result, Time.aDayAgo(), () => true),
+        oneMonthAgo: dataclean.windowPerform(dailyResult, Time.oneMonthAgo()),
 
-      oneWeekAgo: dataclean.windowPerform(result,Time.oneWeekAgo()),
+        sixMonthsAgo: dataclean.windowPerform(dailyResult, Time.sixMonthsAgo()),
 
-      oneMonthAgo: dataclean.windowPerform(result, Time.oneMonthAgo()),
+        oneYearAgo: dataclean.windowPerform(dailyResult, Time.aYearAgo()),
 
-      sixMonthsAgo: dataclean.windowPerform(result, Time.sixMonthsAgo()),
+        whenCreated: dataclean.windowPerform(result, whenCreated, whnCreateLstArg)
+      }
 
-      oneYearAgo: dataclean.windowPerform(result, Time.aYearAgo()),
+      console.log('what we send over', returnObj)
+      res.send(returnObj)
 
-      whenCreated: dataclean.windowPerform(result, whenCreated, whnCreateLstArg)
-    }
+      /*final returnObj = {
+            twoWeeksAgo: {
+              value: XXXX.XX / null,
+              data: [[created_at, portfolio_value: 24333]]
+            },
+            oneMonthAgo: {
+              value: XXXX.XX / null,
+              data: [[created_at, portfolio_value: 24333]]
+            }
+            sixMonthsAgo: {
+              value: XXXX.XX / null,
+              data: [[created_at, portfolio_value: 24333]]
+            }
+            twelveMonthsAgo: {
+              value: XXXX.XX / null,
+              data: [[created_at, portfolio_value: 24333]]
+            }
+       }*/
 
-    console.log('what we send over', returnObj)
-    res.send(returnObj)
-
-    /*final returnObj = {
-          twoWeeksAgo: {
-            value: XXXX.XX / null,
-            data: [[created_at, portfolio_value: 24333]]
-          },
-          oneMonthAgo: {
-            value: XXXX.XX / null,
-            data: [[created_at, portfolio_value: 24333]]
-          }
-          sixMonthsAgo: {
-            value: XXXX.XX / null,
-            data: [[created_at, portfolio_value: 24333]]
-          }
-          twelveMonthsAgo: {
-            value: XXXX.XX / null,
-            data: [[created_at, portfolio_value: 24333]]
-          }
-     }*/
-
-    })
+      })
+  })
   })
 }
 

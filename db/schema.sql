@@ -53,11 +53,11 @@ INSERT INTO addresses (user_id, address)
 
 INSERT INTO performance_history_hourly (user_id, created_at, portfolio_value, amount_eth)
 
-SELECT 2, generate_series('2016-10-05 12:00:00'::timestamp,'2017-12-10 18:00:00'::timestamp,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
+SELECT 2, generate_series('2016-10-05 12:00:00'::timestamp,'2017-12-11 11:00:00'::timestamp,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
 
 INSERT INTO performance_history_hourly (user_id, created_at, portfolio_value, amount_eth)
 
-SELECT 1, generate_series('2016-10-05 12:00:00'::timestamp,'2017-12-10 18:00:00'::timestamp,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
+SELECT 1, generate_series('2016-10-05 12:00:00'::timestamp,'2017-12-11 11:00:00'::timestamp,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
 
 
   -- SELECT generate_series('2017-12-05 12:00:00','2018-1-05 12:00:00','1 hour')
