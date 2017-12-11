@@ -33,8 +33,7 @@ function windowOfPerformance (req, res, next) {
       }
 
       let weeklyResult = dataclean.avgDailyToWeekly(dailyResult)
-      console.log('the time!', Time.sixMonthsAgo01())
-      console.log('the time wr', weeklyResult)
+      console.log('the time 6 m', Time.sixMonthsAgo01())
       const returnObj = {
         aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(), () => true),
 
