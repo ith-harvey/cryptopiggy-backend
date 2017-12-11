@@ -68,7 +68,7 @@ function avgDailyToWeekly(dailyAvgData) {
       newWeeklyObj(currVal)
 
     } else {
-      console.log('month comparison', returnObj.month_avg.getMonth() === currVal.created_at.getMonth())
+
       if (returnObj.month_avg.getMonth() === currVal.created_at.getMonth()) {
         returnObj.portfolio_value += Number(currVal.portfolio_value)
         returnObj.amount_eth += Number(currVal.amount_eth)
