@@ -32,6 +32,8 @@ function windowOfPerformance (req, res, next) {
         whnCreateLstArg = () => true
       }
 
+      let weeklyResult = dataclean.avgDailyToWeekly(dailyResult)
+
       const returnObj = {
         aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(), () => true),
 
@@ -39,9 +41,9 @@ function windowOfPerformance (req, res, next) {
 
         oneMonthAgo: dataclean.windowPerform(dailyResult, Time.oneMonthAgo()),
 
-        sixMonthsAgo: dataclean.windowPerform(dailyResult, Time.sixMonthsAgo()),
+        sixMonthsAgo: dataclean.windowPerform(weeklyResult), Time.sixMonthsAgo()),
 
-        oneYearAgo: dataclean.windowPerform(dailyResult, Time.aYearAgo()),
+        oneYearAgo: dataclean.windowPerform(weeklyResult, Time.aYearAgo()),
 
         whenCreated: dataclean.windowPerform(hourlyResult, whenCreated, whnCreateLstArg)
       }

@@ -46,6 +46,48 @@ function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
   }, {})
 }
 
+function avgDailyToWeekly(dailyAvgData) {
+  console.log('avg to weekly', dailyAvgData)
+  let returnObj = {}
+
+  let reduce =  arrayOfUserData.reduce( (acc, currVal, i) => {
+
+    let newWeeklyObj = (currVal) => {
+      returnObj = new Object()
+      returnObj = {
+        user_id : currVal.user_id,
+        portfolio_value : Number(currVal.portfolio_value),
+        amount_eth : Number(currVal.amount_eth)
+      }
+    }
+
+    if (!returnObj.user_id) {
+      newWeeklyObj(currVal)
+
+    } else {
+
+      if (returnObj.user_id === currVal.user_id) {
+        returnObj.portfolio_value += Number(currVal.portfolio_value)
+        returnObj.amount_eth += Number(currVal.amount_eth)
+      }
+
+      if (i+1 === response[0].length || returnObj.user_id !== currVal.user_id) {
+
+        returnObj.portfolio_value = returnObj.portfolio_value / 24
+        returnObj.amount_eth = returnObj.amount_eth / 24
+        acc.push(returnObj)
+
+        //creating new acc for new user_id
+        newWeeklyObj(currVal)
+      }
+    }
+    return acc
+    },[])
+}
+
+
+
 module.exports = {
-  windowPerform
+  windowPerform,
+  avgDailyToWeekly
 }

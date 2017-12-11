@@ -15,8 +15,7 @@ function averageUserValues(response) {
 
   return response.map( arrayOfUserData => {
     let returnObj = {}
-    // console.log('arrayOfUserData', arrayOfUserData)
-    // console.log('arrayOfUserData', arrayOfUserData.length)
+
     let reduce =  arrayOfUserData.reduce( (acc, currVal, i) => {
 
       let newUserObj = (currVal) => {
