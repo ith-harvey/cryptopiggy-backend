@@ -12,9 +12,9 @@ class Time {
     this.time = '12:00:00'
   }
 
-  static aYearAgo() {
+  static aYearAgo01() {
     this.setup()
-    let yearAgo = ((this.today.getFullYear()-1)+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
+    let yearAgo = ((this.today.getFullYear()-1)+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate().setDate(1));
     return moment(yearAgo, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
@@ -43,9 +43,9 @@ class Time {
     return moment(oneMonthDate, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
-  static sixMonthsAgo() {
+  static sixMonthsAgo01() {
     this.setup()
-    let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
+    let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate().setDate(1));
     return moment(sixMonthDate, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
