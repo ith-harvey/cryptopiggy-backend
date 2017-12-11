@@ -47,7 +47,7 @@ class Time {
   static sixMonthsAgo01() {
     // returns 6 Months ago but on the 1st
     this.setup()
-    let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.setDate(01));
+    let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.setDate(2));
     console.log('should be the 1st!!', sixMonthDate)
     return moment(sixMonthDate, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
