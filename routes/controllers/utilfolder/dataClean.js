@@ -60,7 +60,7 @@ function avgDailyToWeekly(dailyAvgData) {
         user_id : currVal.user_id,
         portfolio_value : Number(currVal.portfolio_value),
         amount_eth : Number(currVal.amount_eth),
-        month_avg: currVal.created_at
+        created_at: currVal.created_at
       }
     }
 
@@ -69,13 +69,13 @@ function avgDailyToWeekly(dailyAvgData) {
 
     } else {
 
-      if (returnObj.month_avg.getMonth() === currVal.created_at.getMonth()) {
+      if (returnObj.created_at.getMonth() === currVal.created_at.getMonth()) {
         returnObj.portfolio_value += Number(currVal.portfolio_value)
         returnObj.amount_eth += Number(currVal.amount_eth)
         daysInMonth += 1
       }
 
-      if (i+1 === dailyAvgData.length || returnObj.month_avg.getMonth() !== currVal.created_at.getMonth()) {
+      if (i+1 === dailyAvgData.length || returnObj.created_at.getMonth() !== currVal.created_at.getMonth()) {
 
         returnObj.portfolio_value = returnObj.portfolio_value / daysInMonth
         returnObj.amount_eth = returnObj.amount_eth / daysInMonth
