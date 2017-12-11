@@ -11,26 +11,35 @@ const { addresses: ctrl } = require('./routes/controllers')
 
 
 
-function averageToOneDailyValue(response) {
-  let newUserObj = (currVal) => {
-    returnObj.user_id = currVal.user_id
-    returnObj.portfolio_value = Number(currVal.portfolio_value)
-    returnObj.amount_eth = Number(currVal.amount_eth)
-  }
+function averageUserValues(response) {
 
-  let returnObj = {}
-  return response[0].reduce( (acc, currVal, i) => {
-    
-    if (!returnObj.user_id) {
-      newUserObj(currVal)
-    } else {
+  return response.map( arrayOfUserData => {
+    let returnObj = {}
+    // console.log('arrayOfUserData', arrayOfUserData)
+    // console.log('arrayOfUserData', arrayOfUserData.length)
+    let reduce =  arrayOfUserData.reduce( (acc, currVal, i) => {
 
-      if (returnObj.user_id === currVal.user_id) {
-        returnObj.portfolio_value += Number(currVal.portfolio_value)
-        returnObj.amount_eth += Number(currVal.amount_eth)
+      let newUserObj = (currVal) => {
+        returnObj = new Object()
+        returnObj = {
+          user_id : currVal.user_id,
+          portfolio_value : Number(currVal.portfolio_value),
+          amount_eth : Number(currVal.amount_eth)
+        }
       }
 
-      if (i+1 === response[0].length || returnObj.user_id !== currVal.user_id) {
+      if (!returnObj.user_id) {
+        newUserObj(currVal)
+
+      } else {
+
+        if (returnObj.user_id === currVal.user_id) {
+          returnObj.portfolio_value += Number(currVal.portfolio_value)
+          returnObj.amount_eth += Number(currVal.amount_eth)
+        }
+
+        if (i+1 === response[0].length || returnObj.user_id !== currVal.user_id) {
+
           returnObj.portfolio_value = returnObj.portfolio_value / 24
           returnObj.amount_eth = returnObj.amount_eth / 24
           acc.push(returnObj)
@@ -38,10 +47,11 @@ function averageToOneDailyValue(response) {
           //creating new acc for new user_id
           newUserObj(currVal)
         }
-    }
-    return acc
-
-  },[])
+      }
+      return acc
+      },[])
+      return reduce[0]
+  })
 }
 
 function arrayOfBalancePromises(users) {
@@ -67,7 +77,7 @@ function getUsersAndBalanceForInsert() {
 
 function dateMinRounded() {
     let date = new Date()
-    date.setHours(date.getHours() + Math.round(date.getMinutes()/60));
+    date.setHours(-6);
     date.setMinutes(0);
     date.setSeconds(0);
     date.setMilliseconds(0);
@@ -80,21 +90,22 @@ function initiateTask() {
 
   // run balance of All addresses
   getUsersAndBalanceForInsert().then(response => {
+    // console.log('what we pull', response)
     // get back the array of objects we will insert {user_id, value, amount_eth}
-      console.log('final result!!!: ', averageToOneDailyValue(response))
-    //
-    //   const insertPromiseArr = response.map( priceObj => {
-    //       // insert to db
-    //       // console.log('what we send to save price', priceObj)
-    //       return PerformanceHistoryDaily.savePrice(priceObj,dateMinRounded())
-      // })
+      response = averageUserValues(response)
+      console.log('response', response)
+
+    const insertPromiseArr = response.map( priceObj => {
+        // insert to db
+        return PerformanceHistoryDaily.savePrice(priceObj,dateMinRounded())
     })
 
     // execute all promises
-    // Promise.all([insertPromiseArr]).then( (success, fail) => {
-    //   if(fail) console.log('it failed!!!')
-    //   else console.log('success!')
-    // })
+    Promise.all([insertPromiseArr]).then( (success, fail) => {
+      if(fail) console.log('it failed!!!')
+      else console.log('success!')
+    })
+  })
 }
 
 initiateTask()
