@@ -47,11 +47,11 @@ function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
 }
 
 function avgDailyToWeekly(dailyAvgData) {
-  console.log('avg to weekly', dailyAvgData)
+  console.log('avg to weekly')
   let returnObj = {}
   let daysInMonth = 0
 
-  let reduce =  dailyAvgData.reduce( (acc, currVal, i) => {
+  return dailyAvgData.reduce( (acc, currVal, i) => {
 
     let newWeeklyObj = (currVal) => {
       daysInMonth = 0
