@@ -77,9 +77,7 @@ function getUsersAndBalanceForInsert() {
 
 function dateMinRounded() {
     let date = new Date()
-    console.log('date:', date)
     date.setHours(-24,0,0,0);
-    console.log('date post change:', date)
 
     return date.toISOString().slice(0, 19).replace('T', ' ')
 }
@@ -89,13 +87,12 @@ function initiateTask() {
 
   // run balance of All addresses
   getUsersAndBalanceForInsert().then(response => {
-    // console.log('what we pull', response)
+
     // get back the array of objects we will insert {user_id, value, amount_eth}
       response = averageUserValues(response)
 
     const insertPromiseArr = response.map( priceObj => {
-        console.log('response', response)
-        console.log('date of insert', dateMinRounded())
+      console.log('time insert', dateMinRounded())
         // insert to db
         return PerformanceHistoryDaily.savePrice(priceObj,dateMinRounded())
     })

@@ -15,19 +15,19 @@ class Time {
   static aYearAgo() {
     this.setup()
     let yearAgo = ((this.today.getFullYear()-1)+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
-    return moment(yearAgo, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
+    return moment(yearAgo, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static oneWeekAgo() {
     this.setup(+new Date - 604800000)
     let oneWeekAgo = ((this.today.getFullYear())+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
-    return moment(oneWeekAgo, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
+    return moment(oneWeekAgo, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static twoWeeksAgo() {
     this.setup(+new Date - 1209600000)
     let twoWeeksAgo = ((this.today.getFullYear())+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
-    return moment(twoWeeksAgo, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
+    return moment(twoWeeksAgo, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static aDayAgo() {
@@ -40,13 +40,13 @@ class Time {
   static oneMonthAgo() {
     this.setup()
     let oneMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth())+'-'+this.today.getDate());
-    return moment(oneMonthDate, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
+    return moment(oneMonthDate, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static sixMonthsAgo() {
     this.setup()
     let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
-    return moment(sixMonthDate, 'YYYY-MM-DD 12:00:00').format('MM/DD/YYYY HH:mm:ss');
+    return moment(sixMonthDate, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static reformat(date) {

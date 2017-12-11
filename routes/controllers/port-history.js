@@ -43,10 +43,9 @@ function windowOfPerformance (req, res, next) {
 
         oneYearAgo: dataclean.windowPerform(dailyResult, Time.aYearAgo()),
 
-        whenCreated: dataclean.windowPerform(result, whenCreated, whnCreateLstArg)
+        whenCreated: dataclean.windowPerform(hourlyResult, whenCreated, whnCreateLstArg)
       }
 
-      console.log('what we send over', returnObj)
       res.send(returnObj)
 
       /*final returnObj = {
