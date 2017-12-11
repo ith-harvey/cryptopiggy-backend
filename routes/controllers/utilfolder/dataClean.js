@@ -75,7 +75,7 @@ function avgDailyToWeekly(dailyAvgData) {
         daysInMonth += 1
       }
 
-      if (i+1 === dailyAvgData.length) {
+      if (i+1 === dailyAvgData.length || returnObj.month_avg.getMonth() !== currVal.created_at.getMonth()) {
 
         returnObj.portfolio_value = returnObj.portfolio_value / daysInMonth
         returnObj.amount_eth = returnObj.amount_eth / daysInMonth
