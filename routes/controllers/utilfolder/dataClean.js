@@ -49,10 +49,12 @@ function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
 function avgDailyToWeekly(dailyAvgData) {
   console.log('avg to weekly', dailyAvgData)
   let returnObj = {}
+  let daysInMonth = 0
 
   let reduce =  dailyAvgData.reduce( (acc, currVal, i) => {
 
     let newWeeklyObj = (currVal) => {
+      daysInMonth = 0
       returnObj = new Object()
       returnObj = {
         user_id : currVal.user_id,
@@ -70,12 +72,13 @@ function avgDailyToWeekly(dailyAvgData) {
       if (returnObj.month_avg.getMonth() === currVal.created_at.getMonth()) {
         returnObj.portfolio_value += Number(currVal.portfolio_value)
         returnObj.amount_eth += Number(currVal.amount_eth)
+        daysInMonth += 1
       }
 
-      if (i+1 === response[0].length || returnObj.user_id !== currVal.user_id) {
+      if (i+1 === dailyAvgData.length) {
 
-        returnObj.portfolio_value = returnObj.portfolio_value / 24
-        returnObj.amount_eth = returnObj.amount_eth / 24
+        returnObj.portfolio_value = returnObj.portfolio_value / daysInMonth
+        returnObj.amount_eth = returnObj.amount_eth / daysInMonth
         acc.push(returnObj)
 
         //creating new acc for new user_id
