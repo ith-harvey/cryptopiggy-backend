@@ -5,7 +5,7 @@ const moment = require('moment');
 // 1. for week/year/month/6month
 // 2. 24 hours
 
-function windowPerform(data, maxTimeWindow, comparisonDaysVsHours, xAxisInterval) {
+function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours) {
   console.log('running!!!')
 
   let snapshotTime
