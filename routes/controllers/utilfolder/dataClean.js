@@ -21,6 +21,7 @@ function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
 
     // if the maxTimewindow === the created_at price window set value
     if (moment(snapshotTime).isSame(maxTimeWindow)) {
+      console.log('it is in here!!!', snapshotTime)
       acum.valueBackThen = priceHistObj.portfolio_value
     }
 
@@ -28,7 +29,6 @@ function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
     if (moment(maxTimeWindow).isSameOrBefore(snapshotTime)) {
 
       if (comparisonDaysVsHours === undefined) {
-        console.log('time call in dataclean:',Time.justTime(snapshotTime))
         comparisonDaysVsHours = () => (Time.justTime(snapshotTime) === '00:00:00')
         if (acum.xAxisInterval === 'hourly') acum.xAxisInterval = 'monthly'
       }
