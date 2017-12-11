@@ -50,14 +50,15 @@ function avgDailyToWeekly(dailyAvgData) {
   console.log('avg to weekly', dailyAvgData)
   let returnObj = {}
 
-  let reduce =  arrayOfUserData.reduce( (acc, currVal, i) => {
+  let reduce =  dailyAvgData.reduce( (acc, currVal, i) => {
 
     let newWeeklyObj = (currVal) => {
       returnObj = new Object()
       returnObj = {
         user_id : currVal.user_id,
         portfolio_value : Number(currVal.portfolio_value),
-        amount_eth : Number(currVal.amount_eth)
+        amount_eth : Number(currVal.amount_eth),
+        month_avg:
       }
     }
 
@@ -65,8 +66,8 @@ function avgDailyToWeekly(dailyAvgData) {
       newWeeklyObj(currVal)
 
     } else {
-
-      if (returnObj.user_id === currVal.user_id) {
+      console.log('month comparison', returnObj.month_avg.getMonth() === currVal.created_at.getMonth())
+      if (returnObj.month_avg.getMonth() === currVal.created_at.getMonth()) {
         returnObj.portfolio_value += Number(currVal.portfolio_value)
         returnObj.amount_eth += Number(currVal.amount_eth)
       }
