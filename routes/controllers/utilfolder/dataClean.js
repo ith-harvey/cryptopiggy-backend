@@ -6,6 +6,7 @@ const moment = require('moment');
 // 2. 24 hours
 
 function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
+  console.log('running!!!')
 
   let snapshotTime
 

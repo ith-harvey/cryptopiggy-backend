@@ -21,7 +21,7 @@ function windowOfPerformance (req, res, next) {
 
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
-      console.log('daily result: ', dailyResult)
+      // console.log('daily result: ', dailyResult)
       let whnCreateLstArg
 
       // if whenCreated is before 2 weeks ago -> track hourly
