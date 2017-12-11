@@ -20,8 +20,6 @@ function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
 
 
     // if the maxTimewindow === the created_at price window set value
-    // console.log('weekly result maxt window', maxTimeWindow)
-    // console.log('weekly result sn time', snapshotTime)
     if (moment(snapshotTime).isSame(maxTimeWindow)) {
       acum.valueBackThen = priceHistObj.portfolio_value
     }
