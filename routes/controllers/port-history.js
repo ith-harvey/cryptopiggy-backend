@@ -41,7 +41,7 @@ function windowOfPerformance (req, res, next) {
 
         oneMonthAgo: dataclean.windowPerform(dailyResult, Time.oneMonthAgo(), 'monthly'),
 
-        sixMonthsAgo: dataclean.windowPerform(weeklyResult, Time.sixMonthsAgo01(), 'monthly'),
+        sixMonthsAgo: dataclean.windowPerform(weeklyResult, Time.sixMonthsAgo01(), 'yearly'),
 
         oneYearAgo: dataclean.windowPerform(weeklyResult, Time.aYearAgo01(), 'yearly'),
 
