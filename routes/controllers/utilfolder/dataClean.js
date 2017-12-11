@@ -27,7 +27,8 @@ function windowPerform(data, maxTimeWindow, comparisonDaysVsHours) {
     if (moment(maxTimeWindow).isSameOrBefore(snapshotTime)) {
 
       if (comparisonDaysVsHours === undefined) {
-        comparisonDaysVsHours = () => (Time.justTime(snapshotTime) === '12:00:00')
+        console.log('time call in dataclean:',Time.justTime(snapshotTime))
+        comparisonDaysVsHours = () => (Time.justTime(snapshotTime) === '00:00:00')
         if (acum.xAxisInterval === 'hourly') acum.xAxisInterval = 'monthly'
       }
 
