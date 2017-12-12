@@ -14,10 +14,8 @@ const { Auth } = require('../../db')
 function windowOfPerformance (req, res, next) {
   const id =  jwtUtils.parseToken(req.body.token).id.toString()
   Auth.getUserById(id).then( response => {
-    console.log('whenCreated resp', response)
 
     let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).format('MM/DD/YYYY hh:mm:ss')
-    console.log('after adjust:', whenCreated)
 
 
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
