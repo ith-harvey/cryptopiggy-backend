@@ -12,10 +12,10 @@ class Time {
     this.time = '12:00:00'
   }
 
-  static aYearAgo01() {
+  static aYearAgo() {
     // returns A Year ago but on the 1st
     this.setup()
-    let yearAgo = ((this.today.getFullYear()-1)+'-'+(this.today.getMonth()+1)+'-'+(new Date(this.today.setDate(1))));
+    let yearAgo = ((this.today.getFullYear()-1)+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate());
     return moment(yearAgo, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
@@ -44,10 +44,10 @@ class Time {
     return moment(oneMonthDate, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
-  static sixMonthsAgo01() {
+  static sixMonthsAgo() {
     // returns 6 Months ago but on the 1st
     this.setup()
-    let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+(new Date(this.today.setDate(1))));
+    let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
     return moment(sixMonthDate, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
@@ -61,7 +61,7 @@ class Time {
     return date
   }
 
-  static modifyToFirstOfMonth(date) {
+  static firstOfMonth(date) {
     console.log('date pre modify!!', date)
     date = moment(date, "MM/DD/YYYY HH:mm:ss").startOf('month').format('MM/DD/YYYY HH:mm:ss')
     console.log('date post modify!!', date)
