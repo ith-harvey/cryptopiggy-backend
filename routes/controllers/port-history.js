@@ -23,17 +23,25 @@ function windowOfPerformance (req, res, next) {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
       // console.log('daily result: ', dailyResult)
       let whnCreateLstArg
+      let xInterval
 
-      // if whenCreated is before 2 weeks ago -> track hourly
+      // if whenCreated is before 1 day ago -> track hourly
       // else -> track daily
-      if (moment(whenCreated).isSameOrBefore(Time.twoWeeksAgo())) {
+      if (moment(whenCreated).isSameOrBefore(Time.aDayAgo())) {
+
         whnCreateLstArg = undefined
+        xInterval = 'monthly'
+
+        if(moment(whenCreated).isSameOrBefore(Time.sixMonthsAgo01())) {
+          console.log('when created:::', whenCreated)
+          xInterval = 'yearly'
+        }
+
       } else {
         whnCreateLstArg = () => true
       }
 
       let weeklyResult = dataclean.avgDailyToWeekly(dailyResult)
-      console.log('the time 6 m', Time.aYearAgo01())
       const returnObj = {
         aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(),'hourly', () => true),
 
@@ -45,7 +53,7 @@ function windowOfPerformance (req, res, next) {
 
         oneYearAgo: dataclean.windowPerform(weeklyResult, Time.aYearAgo01(), 'yearly'),
 
-        whenCreated: dataclean.windowPerform(hourlyResult, whenCreated,'hourly', whnCreateLstArg)
+        whenCreated: dataclean.windowPerform(hourlyResult, whenCreated, xInterval , whnCreateLstArg)
       }
 
       res.send(returnObj)
