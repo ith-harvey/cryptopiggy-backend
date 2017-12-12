@@ -63,7 +63,7 @@ class Time {
 
   static modifyToFirstOfMonth(date) {
     console.log('date pre modify!!', date)
-    date = moment(date, "MMM DD YYYY HH:mm:ss").startOf('month').format('MM/DD/YYYY HH:mm:ss')
+    date = moment(date, "MM/DD/YYYY HH:mm:ss").startOf('month')
     console.log('date post modify!!', date)
     return date
   }
