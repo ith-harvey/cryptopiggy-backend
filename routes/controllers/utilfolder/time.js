@@ -62,7 +62,8 @@ class Time {
   }
 
   static modifyToFirstOfMonth(date) {
-    date = date.date(1)
+
+    date = moment(date, "MMM DD YYYY HH:mm:ss").date(1)
     console.log('date post modify!!', date)
     return date
   }
