@@ -19,6 +19,7 @@ function windowOfPerformance (req, res, next) {
     let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).format('MM/DD/YYYY hh:mm:ss')
     console.log('after adjust:', whenCreated)
 
+
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
       // console.log('daily result: ', dailyResult)
@@ -33,7 +34,7 @@ function windowOfPerformance (req, res, next) {
         xInterval = 'monthly'
 
         if(moment(whenCreated).isSameOrBefore(Time.sixMonthsAgo01())) {
-          console.log('when created:::', whenCreated)
+          console.log('when created:::', Time.modifyToFirstOfMonth(whenCreated))
           xInterval = 'yearly'
         }
 

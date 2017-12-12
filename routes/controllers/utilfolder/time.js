@@ -61,6 +61,12 @@ class Time {
     return date
   }
 
+  static modifyToFirstOfMonth(date) {
+    date = date.date(1)
+    console.log('date post modify!!', date)
+    return date
+  }
+
 }
 
  module.exports = Time
