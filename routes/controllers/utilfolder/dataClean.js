@@ -6,7 +6,6 @@ const moment = require('moment');
 // 2. 24 hours
 
 function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours) {
-  console.log('running!!!')
 
   let snapshotTime
 
@@ -21,7 +20,6 @@ function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours
 
     // if the maxTimewindow === the created_at price window set value
     if (moment(snapshotTime).isSame(maxTimeWindow)) {
-      console.log('it is in here!!!', snapshotTime)
       acum.valueBackThen = priceHistObj.portfolio_value
     }
 
@@ -46,7 +44,6 @@ function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours
 }
 
 function avgDailyToWeekly(dailyAvgData) {
-  console.log('avg to weekly')
   let returnObj = {}
   let daysInMonth = 0
 
