@@ -32,10 +32,12 @@ function windowOfPerformance (req, res, next) {
       if(moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
         xInterval = 'yearly'
         whenCreatedData = weeklyResult
+        whenCreated = Time.firstOfMonth(whenCreated)
 
       } else if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.sixMonthsAgo()))) {
         xInterval = 'yearly'
         whenCreatedData = weeklyResult
+        whenCreated = Time.firstOfMonth(whenCreated)
 
       } else if (moment(whenCreated).isSameOrBefore(Time.oneMonthAgo())) {
         xInterval = 'monthly'
@@ -47,6 +49,7 @@ function windowOfPerformance (req, res, next) {
         whnCreateLstArg = () => true
       }
 
+      console.log()
 
       const returnObj = {
         aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(),'hourly', () => true),
