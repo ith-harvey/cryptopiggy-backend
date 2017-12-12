@@ -20,27 +20,34 @@ function windowOfPerformance (req, res, next) {
 
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
-      // console.log('daily result: ', dailyResult)
-      let whnCreateLstArg
-      let xInterval
+
+      let weeklyResult = dataclean.avgDailyToWeekly(dailyResult)
+      
+      let whnCreateLstArg = undefined
+      let xInterval, whenCreatedData
+
 
       // if whenCreated is before 1 day ago -> track hourly
       // else -> track daily
-      if (moment(whenCreated).isSameOrBefore(Time.aDayAgo())) {
+      if(moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
+        xInterval = 'yearly'
+        whenCreatedData = weeklyResult
 
-        whnCreateLstArg = undefined
+      } else if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.sixMonthsAgo()))) {
+        xInterval = 'yearly'
+        whenCreatedData = weeklyResult
+
+      } else if (moment(whenCreated).isSameOrBefore(Time.oneMonthAgo())) {
         xInterval = 'monthly'
-
-        if(moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.sixMonthsAgo()))) {
-          console.log('when created:::', Time.firstOfMonth(whenCreated))
-          xInterval = 'yearly'
-        }
+        whenCreatedData = dailyResult
 
       } else {
+        xInterval = 'hourly'
+        whenCreatedData = hourlyResult
         whnCreateLstArg = () => true
       }
 
-      let weeklyResult = dataclean.avgDailyToWeekly(dailyResult)
+
       const returnObj = {
         aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(),'hourly', () => true),
 
