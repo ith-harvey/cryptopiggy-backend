@@ -4,10 +4,6 @@ const rp = require('request-promise')
 
 const { Auth } = require('../../db')
 
-const awsSesURL = 'https://email.us-west-2.amazonaws.com
-?Action=SendEmail'
-
-
 
 function signIn (req, res, next) {
   Auth.getUserByUsername(req.body.username).then( user => {
@@ -76,55 +72,6 @@ function signUp (req, res, next) {
   })
 }
 
-
-function PasswordReset(req,res,next) {
-  console.log('hitting password reset')
-  const body = req.body;
-  const username = body.username.trim()
-
-  Auth.getUserByUsername(username).then(response => {
-    if (response.length) {
-
-      function sendPasswordReset(awsSesURL,emailAddress,subject,bodyMessage) {
-        // email is user%40example.com
-
-        var options = {
-          uri: `${awsSesURL}&Source=questions%40cryptopiggy.us
-          &Message.Subject.Data=Crypto%20Piggy%20password%20reset%20
-          &Message.Body.Text.Data=Hello.%20I%20hope%20you%20are%20having%20a%20good%20day.`,
-          headers: {
-              'User-Agent': 'Request-Promise'
-          },
-          json: true // Automatically parses the JSON string in the response
-        };
-        return rp(options)
-      }
-
-      var options = {
-        uri: `${etherscanURL}module=account&action=balancemulti&address=${addressArr}&tag=latest&apikey=${eScanApiKey}`,
-        headers: {
-            'User-Agent': 'Request-Promise'
-        },
-        json: true // Automatically parses the JSON string in the response
-      };
-
-      awsSesURL
-
-      '&Source=user%40example.com
-      &Destination.ToAddresses.member.1=allan%40example.com
-      &Message.Subject.Data=This%20is%20the%20subject%20line.
-      &Message.Body.Text.Data=Hello.%20I%20hope%20you%20are%20having%20a%20good%20day.
-      '
-
-    } else {
-      res.status(401).json({
-        error: true,
-        message: 'Username does not exist'
-      });
-    }
-
-
-}
 
 module.exports = {
   signIn,
