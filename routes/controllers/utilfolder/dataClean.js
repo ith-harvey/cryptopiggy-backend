@@ -33,8 +33,8 @@ function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours
       if (comparisonDaysVsHours()) { //return arr filled with days or hours
         acum.windowData.push({
             day: snapshotTime,
-            value: Number(priceHistObj.portfolio_value).toFixed(2),
-            amount_eth: Number(priceHistObj.amount_eth).toFixed(5)
+            value: Number(priceHistObj.portfolio_value),
+            amount_eth: Number(priceHistObj.amount_eth)
           })
       }
     }
