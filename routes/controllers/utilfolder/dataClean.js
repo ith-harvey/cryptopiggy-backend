@@ -31,6 +31,9 @@ function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours
       }
 
       if (comparisonDaysVsHours()) { //return arr filled with days or hours
+        console.log('what we push in value',Number(priceHistObj.portfolio_value).toFixed(2) )
+
+        console.log('what we push in Eth',Number(priceHistObj.amount_eth).toFixed(5) )
 
         acum.windowData.push({
             day: snapshotTime,
