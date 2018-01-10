@@ -30,7 +30,7 @@ We plan on adding additional cryptocurrencies and ERC20 tokens in the coming mon
 * [Ubuntu 16.04](https://www.ubuntu.com/download/desktop) - Server environment
 * [PM2](http://pm2.keymetrics.io/) - Production Process Manager
 * [AWS EC2](https://aws.amazon.com/?nc2=h_lg) - Server hosting
-* [GitHub Webhooks](https://developer.github.com/webhooks/) - Production Auto Deployment
+* [GitHub Webhooks](https://developer.github.com/webhooks/) - Auto Deployment to Production 
 * [PostgreSQL](https://www.postgresql.org/) - Database
 
 ## License
