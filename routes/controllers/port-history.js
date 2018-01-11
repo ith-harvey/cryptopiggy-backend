@@ -20,11 +20,13 @@ function windowOfPerformance (req, res, next) {
 
     // let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).format('MM/DD/YYYY hh:mm:ss')
 
-    let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).milliseconds(0)
 
-    console.log('when created after modification 1: ', whenCreated)
+    let whenCreated = Time.addHourSetEvryThingToZeros(response.created_at)
+    // let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).milliseconds(0)
 
-    whenCreated = Time.reformat(whenCreated)
+    // console.log('when created after modification 1: ', whenCreated)
+
+    // whenCreated = Time.reformat(whenCreated)
 
     console.log('when created after modification 2: ', whenCreated)
 
