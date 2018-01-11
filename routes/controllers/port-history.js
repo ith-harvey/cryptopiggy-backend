@@ -17,6 +17,8 @@ function windowOfPerformance (req, res, next) {
 
     let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).format('MM/DD/YYYY hh:mm:ss')
 
+    console.log('when created formated correctly: ', whenCreated)
+
 
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
@@ -33,7 +35,7 @@ function windowOfPerformance (req, res, next) {
       console.log('work for if', moment(Time.firstOfMonth(whenCreated)))
 
       console.log('time that gets us in trouble', Time.firstOfMonth(Time.sixMonthsAgo()))
-      
+
       if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
         xInterval = 'yearly'
         whenCreatedData = weeklyResult
