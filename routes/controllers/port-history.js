@@ -31,6 +31,9 @@ function windowOfPerformance (req, res, next) {
       // else -> track daily
 
       console.log('work for if', moment(Time.firstOfMonth(whenCreated)))
+
+      console.log('time that gets us in trouble', Time.firstOfMonth(Time.sixMonthsAgo()))
+      
       if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
         xInterval = 'yearly'
         whenCreatedData = weeklyResult
