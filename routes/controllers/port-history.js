@@ -17,7 +17,7 @@ function windowOfPerformance (req, res, next) {
 
     // let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).format('MM/DD/YYYY hh:mm:ss')
 
-    let whenCreated = Time.reformat(response.created_at)
+    let whenCreated = Time.reformat(response.created_at).add(1,'h').minutes(0)
     console.log('when created formated correctly: ', whenCreated)
 
 
