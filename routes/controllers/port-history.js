@@ -20,10 +20,13 @@ function windowOfPerformance (req, res, next) {
 
     // let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).format('MM/DD/YYYY hh:mm:ss')
 
-    let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0)
+    let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).milliseconds(0)
 
-    console.log('when created after modification: ', whenCreated)
+    console.log('when created after modification 1: ', whenCreated)
 
+    whenCreated = Time.reformat(whenCreated)
+
+    console.log('when created after modification 2: ', whenCreated)
 
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
