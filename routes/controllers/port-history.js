@@ -15,9 +15,6 @@ function windowOfPerformance (req, res, next) {
   const id =  jwtUtils.parseToken(req.body.token).id.toString()
   Auth.getUserById(id).then( response => {
 
-
-    console.log('when created coming in: ', Time.reformat(response.created_at))
-
     // let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).format('MM/DD/YYYY hh:mm:ss')
 
 
