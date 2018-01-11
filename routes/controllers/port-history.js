@@ -30,7 +30,7 @@ function windowOfPerformance (req, res, next) {
       // if whenCreated is before 1 day ago -> track hourly
       // else -> track daily
       if(moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
-        xInterval = 'yearly'
+        xInterval = 'hourly'
         whenCreatedData = weeklyResult
         whenCreated = Time.firstOfMonth(whenCreated)
         console.log('when created match:', whenCreated)
@@ -39,6 +39,7 @@ function windowOfPerformance (req, res, next) {
         xInterval = 'yearly'
         whenCreatedData = weeklyResult
         whenCreated = Time.firstOfMonth(whenCreated)
+        console.log('when created match:', whenCreated)
 
       } else if (moment(whenCreated).isSameOrBefore(Time.oneMonthAgo())) {
         xInterval = 'monthly'
