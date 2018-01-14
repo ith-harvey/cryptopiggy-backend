@@ -50,7 +50,8 @@ class Time {
     let sixMonthDate = this.today.setMonth(this.today.getMonth() - 6)
      // ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
     console.log('in month generator', sixMonthDate)
-    return moment(sixMonthDate, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
+    console.log('in month generator', typeof sixMonthDate)
+    return moment(sixMonthDate, 'x').format('MM/DD/YYYY HH:mm:ss');
   }
 
   static reformat(date) {
