@@ -47,7 +47,9 @@ class Time {
   static sixMonthsAgo() {
     // returns 6 Months ago but on the 1st
     this.setup()
-    let sixMonthDate = ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
+    let sixMonthDate = this.today.setMonth(date.getMonth() - 6)
+     // ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
+    console.log('in month generator', sixMonthDate)
     return moment(sixMonthDate, 'YYYY-MM-DD 00:00:00').format('MM/DD/YYYY HH:mm:ss');
   }
 
