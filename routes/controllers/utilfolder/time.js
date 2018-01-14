@@ -66,7 +66,7 @@ class Time {
     return date
   }
 
-  static addHourSetEvryThingToZeros(date) {
+  static addHourReformatResetToZeros(date) {
     date = moment(date, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).milliseconds(0)
     return this.reformat(date)
   }

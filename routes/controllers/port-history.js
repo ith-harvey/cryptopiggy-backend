@@ -15,17 +15,9 @@ function windowOfPerformance (req, res, next) {
   const id =  jwtUtils.parseToken(req.body.token).id.toString()
   Auth.getUserById(id).then( response => {
 
-    // let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).format('MM/DD/YYYY hh:mm:ss')
+    let whenCreated = Time.addHourReformatResetToZeros(response.created_at)
 
-
-    let whenCreated = Time.addHourSetEvryThingToZeros(response.created_at)
-    // let whenCreated = moment(response.created_at, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).milliseconds(0)
-
-    // console.log('when created after modification 1: ', whenCreated)
-
-    // whenCreated = Time.reformat(whenCreated)
-
-    console.log('when created after modification 2: ', whenCreated)
+    console.log('when created after modification: ', whenCreated)
 
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
@@ -39,9 +31,9 @@ function windowOfPerformance (req, res, next) {
       // if whenCreated is before 1 day ago -> track hourly
       // else -> track daily
 
-      console.log('work for if', moment(Time.firstOfMonth(whenCreated)))
-
-      console.log('time that gets us in trouble', Time.firstOfMonth(Time.sixMonthsAgo()))
+      // console.log('work for if', moment(Time.firstOfMonth(whenCreated)))
+      //
+      // console.log('time that gets us in trouble', Time.firstOfMonth(Time.sixMonthsAgo()))
 
       if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
         xInterval = 'yearly'
