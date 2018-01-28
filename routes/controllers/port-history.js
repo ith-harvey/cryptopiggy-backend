@@ -42,6 +42,7 @@ function windowOfPerformance (req, res, next) {
         whenCreated = Time.firstOfMonth(whenCreated)
 
       } else if (moment(whenCreated).isSameOrBefore(Time.oneWeekAgo())) {
+        console.log('were in here')
         xInterval = 'monthly'
         whenCreatedData = dailyResult
 
