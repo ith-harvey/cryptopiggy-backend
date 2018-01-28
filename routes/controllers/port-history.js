@@ -29,8 +29,7 @@ function windowOfPerformance (req, res, next) {
 
 
       console.log('when created', whenCreated)
-      console.log('when created first Of Month', Time.firstOfMonth(whenCreated))
-      console.log('first Of Month year ago', Time.firstOfMonth(Time.aYearAgo()))
+      console.log('week ago', Time.oneWeekAgo())
 
       if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
         xInterval = 'yearly'
@@ -51,9 +50,6 @@ function windowOfPerformance (req, res, next) {
         whenCreatedData = hourlyResult
         whnCreateLstArg = () => true
       }
-
-      console.log('a day ago', typeof Time.aDayAgo())
-      console.log('when created', typeof whenCreated)
 
       const returnObj = {
         aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(),'hourly', () => true),
