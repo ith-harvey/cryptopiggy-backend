@@ -1,12 +1,22 @@
 const Time = require('./time')
 const moment = require('moment');
 
+/**
+   * windowPerform()
+   *
+   * @param {Array} data - The performance data pulled from DB.
+   * @param {String} maxTimeWindow - .
+   * @param {Number} min - Minimum value accepted for trends.
+   * @param {Number} max - Maximum value accepted for trends.
+   * @param {Object} plc - The ID of the {@link PLC} object where this tag belongs.
+   */
+
+
 // two cases:
 // 1. for week/year/month/6month
 // 2. 24 hours
 
 function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours) {
-
   let snapshotTime
 
   return data.reduce( (acum, priceHistObj) => {
@@ -18,7 +28,7 @@ function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours
     if (!acum.xAxisInterval) acum.xAxisInterval = xAxisInterval
 
 
-    // if the maxTimewindow === the created_at price window set value
+    // if the maxTimewindow === the created_at price window, assign value
     if (moment(snapshotTime).isSame(maxTimeWindow)) {
       acum.valueBackThen = Number(priceHistObj.portfolio_value).toFixed(2)
     }
@@ -41,6 +51,8 @@ function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours
     return acum
   }, {})
 }
+
+
 
 function avgDailyToWeekly(dailyAvgData) {
   let returnObj = {}

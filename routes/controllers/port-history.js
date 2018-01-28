@@ -30,7 +30,6 @@ function windowOfPerformance (req, res, next) {
 
       // if whenCreated is before 1 day ago -> track hourly
       // else -> track daily
-
       if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
         xInterval = 'yearly'
         whenCreatedData = weeklyResult
@@ -51,6 +50,8 @@ function windowOfPerformance (req, res, next) {
         whnCreateLstArg = () => true
       }
 
+      console.log('a day ago', Time.aDayAgo() )
+      console.log('when created',  whenCreated)
 
       const returnObj = {
         aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(),'hourly', () => true),
@@ -63,7 +64,7 @@ function windowOfPerformance (req, res, next) {
 
         oneYearAgo: dataclean.windowPerform(weeklyResult, Time.firstOfMonth(Time.aYearAgo()), 'yearly'),
 
-        whenCreated: dataclean.windowPerform(whenCreatedData, whenCreated, xInterval , whnCreateLstArg)
+        whenCreated: dataclean.windowPerform(whenCreatedData, whenCreated, xInterval, whnCreateLstArg)
       }
 
       res.send(returnObj)
