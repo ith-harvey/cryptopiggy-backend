@@ -30,7 +30,7 @@ function windowOfPerformance (req, res, next) {
 
       console.log('when created', whenCreated)
       console.log('when created first Of Month', Time.firstOfMonth(whenCreated))
-      console.log('first Of Month year ago', Time.firstOfMonth(Time.aYearAgo())
+      console.log('first Of Month year ago', Time.firstOfMonth(Time.aYearAgo()))
 
       if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
         xInterval = 'yearly'
