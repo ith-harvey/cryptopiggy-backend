@@ -3,12 +3,26 @@ const moment = require('moment');
 
 /**
    * windowPerform()
-   *
    * @param {Array} data - The performance data pulled from DB.
-   * @param {String} maxTimeWindow - .
-   * @param {Number} min - Minimum value accepted for trends.
-   * @param {Number} max - Maximum value accepted for trends.
-   * @param {Object} plc - The ID of the {@link PLC} object where this tag belongs.
+   * @param {String} maxTimeWindow - date of the time window we capture.
+   *    i.e: 1 week, 24 hours, 1 month
+   * @param {String} xAxisInterval - the x axis interval we will be graphing.
+   *    i.e: 'hourly', 'monthly', 'yearly'
+   * @param {undefined || () => true} comparisonDaysVsHours -
+   *
+   *  ////
+   *
+   * @returns {Object} acum - the windowData, the value of the portfolio back then and the xAxisInterval
+   *    acum: {
+   *      valueBackThen: null || 'yearly'
+   *      windowData: [{
+   *        day: string,
+   *        value: number || null,
+   *        amount_eth: number
+   *        },
+   *        {} ...]
+   *      xAxisInterval: 'hourly' || 'monthly' || 'yearly'
+   *    }
    */
 
 

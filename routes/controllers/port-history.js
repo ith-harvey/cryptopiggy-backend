@@ -28,8 +28,10 @@ function windowOfPerformance (req, res, next) {
       let xInterval, whenCreatedData
 
 
-      // if whenCreated is before 1 day ago -> track hourly
-      // else -> track daily
+      console.log('when created', whenCreated)
+      console.log('when created first Of Month', Time.firstOfMonth(whenCreated))
+      console.log('first Of Month year ago', Time.firstOfMonth(Time.aYearAgo())
+
       if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
         xInterval = 'yearly'
         whenCreatedData = weeklyResult
@@ -50,7 +52,7 @@ function windowOfPerformance (req, res, next) {
         whnCreateLstArg = () => true
       }
 
-      console.log('a day ago', typeof Time.aDayAgo() )
+      console.log('a day ago', typeof Time.aDayAgo())
       console.log('when created', typeof whenCreated)
 
       const returnObj = {
