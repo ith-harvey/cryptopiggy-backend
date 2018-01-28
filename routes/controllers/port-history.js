@@ -50,8 +50,8 @@ function windowOfPerformance (req, res, next) {
         whnCreateLstArg = () => true
       }
 
-      console.log('a day ago', Time.aDayAgo() )
-      console.log('when created',  whenCreated)
+      console.log('a day ago', typeof Time.aDayAgo() )
+      console.log('when created', typeof whenCreated)
 
       const returnObj = {
         aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(),'hourly', () => true),
