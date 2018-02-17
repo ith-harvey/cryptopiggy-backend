@@ -129,9 +129,11 @@ function avgDailyToWeekly(dailyAvgData) {
     }
 
     if (!returnObj.user_id) {
+      console.log('in if')
       newWeeklyObj(currVal)
 
     } else {
+      console.log('in else', returnObj.created_at)
 
       if (returnObj.created_at.getMonth() === currVal.created_at.getMonth()) {
         returnObj.portfolio_value += Number(currVal.portfolio_value)
