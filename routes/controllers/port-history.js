@@ -22,6 +22,7 @@ function windowOfPerformance (req, res, next) {
       console.log('were in here /////// ', JSON.stringify(dailyResult) )
 
       let weeklyResult = dataclean.avgDailyToWeekly(dailyResult)
+      console.log('were in here PT 2 /////// ', JSON.stringify(dailyResult))
 
       let whnCreateLstArg = undefined
       let xInterval, whenCreatedData
