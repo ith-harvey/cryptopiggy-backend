@@ -38,7 +38,6 @@ function windowOfPerformance (req, res, next) {
         whenCreated = Time.firstOfMonth(whenCreated)
 
       } else if (moment(whenCreated).isSameOrBefore(Time.oneWeekAgo())) {
-        console.log('were in here', dailyResult)
         xInterval = 'monthly'
         whenCreatedData = dailyResult
 
@@ -53,7 +52,7 @@ function windowOfPerformance (req, res, next) {
 
         oneWeekAgo: dataclean.windowPerform(dailyResult,Time.oneWeekAgo(),'monthly'),
 
-        oneMonthAgo: dataclean.monthlywindowPerform(dailyResult, Time.oneMonthAgo(), 'monthly'),
+        oneMonthAgo: dataclean.windowPerform(dailyResult, Time.oneMonthAgo(), 'monthly'),
 
         sixMonthsAgo: dataclean.windowPerform(weeklyResult, Time.firstOfMonth(Time.sixMonthsAgo()), 'yearly'),
 

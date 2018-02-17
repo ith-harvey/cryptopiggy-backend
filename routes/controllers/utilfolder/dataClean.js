@@ -28,48 +28,6 @@ const moment = require('moment');
 // 1. for week/year/month/6month
 // 2. 24 hours
 
-function monthlywindowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours) {
-  // console.log('were in here /////// YUP ', JSON.stringify(data) )
-  let snapshotTime
-
-  return data.reduce( (acum, priceHistObj) => {
-    snapshotTime = Time.reformat(priceHistObj.created_at)
-
-    // initialize the object
-    if (!acum.valueBackThen) acum.valueBackThen = null
-    if (!acum.windowData) acum.windowData = []
-    if (!acum.xAxisInterval) acum.xAxisInterval = xAxisInterval
-
-
-    // if the maxTimewindow === the created_at price window, assign value
-    if (moment(snapshotTime).isSame(maxTimeWindow)) {
-      acum.valueBackThen = Number(priceHistObj.portfolio_value).toFixed(2)
-    }
-
-    // if the maxTimewindow is before created_at price window, push into arr
-    if (moment(maxTimeWindow).isSameOrBefore(snapshotTime)) {
-      console.log('snaptime', snapshotTime)
-
-      if (comparisonDaysVsHours === undefined) {
-        comparisonDaysVsHours = () => (Time.justTime(snapshotTime) === '00:00:00')
-      }
-
-      if (comparisonDaysVsHours()) { //return arr filled with days or hours
-        acum.windowData.push({
-            day: snapshotTime,
-            value: Number(priceHistObj.portfolio_value),
-            amount_eth: Number(priceHistObj.amount_eth)
-          })
-      }
-    }
-
-    return acum
-  }, {})
-}
-
-
-
-
 function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours) {
   let snapshotTime
 
@@ -128,11 +86,9 @@ function avgDailyToWeekly(dailyAvgData) {
     }
 
     if (!returnObj.user_id) {
-      console.log('in if')
       newWeeklyObj(currVal)
 
     } else {
-      console.log('in else', returnObj.created_at)
 
       if (returnObj.created_at.getMonth() === currVal.created_at.getMonth()) {
         returnObj.portfolio_value += Number(currVal.portfolio_value)
