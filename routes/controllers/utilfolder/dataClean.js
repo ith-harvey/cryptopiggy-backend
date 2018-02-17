@@ -111,7 +111,7 @@ function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours
 function avgDailyToWeekly(dailyAvgData) {
   let returnObj = {}
   let daysInMonth = 0
-  let copiedDate
+  let copiedDate // for deep copy of date object
 
   return dailyAvgData.reduce( (acc, currVal, i) => {
 
@@ -119,11 +119,6 @@ function avgDailyToWeekly(dailyAvgData) {
       daysInMonth = 0
       returnObj = new Object()
       copiedDate = new Date(currVal.created_at.getTime())
-      console.log('comied date',  copiedDate)
-      console.log('comied date', typeof  copiedDate)
-
-      console.log('comied date curval', currVal.created_at)
-      console.log('comied date curval', typeof  currVal.created_at)
       returnObj = {
         user_id : currVal.user_id,
         portfolio_value : Number(currVal.portfolio_value),
