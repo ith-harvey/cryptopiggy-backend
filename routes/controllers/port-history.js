@@ -17,8 +17,6 @@ function windowOfPerformance (req, res, next) {
 
     let whenCreated = Time.addHourReformatResetToZeros(response.created_at)
 
-    console.log('when created after modification: ', whenCreated)
-
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
 
@@ -26,10 +24,6 @@ function windowOfPerformance (req, res, next) {
 
       let whnCreateLstArg = undefined
       let xInterval, whenCreatedData
-
-
-      console.log('when created', whenCreated)
-      console.log('week ago', Time.oneWeekAgo())
 
       if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
         xInterval = 'yearly'
