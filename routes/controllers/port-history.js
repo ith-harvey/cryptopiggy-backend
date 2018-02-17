@@ -19,7 +19,6 @@ function windowOfPerformance (req, res, next) {
 
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
-      console.log('daily Result', dailyResult)
 
       let weeklyResult = dataclean.avgDailyToWeekly(dailyResult)
 
@@ -52,7 +51,7 @@ function windowOfPerformance (req, res, next) {
 
         oneWeekAgo: dataclean.windowPerform(dailyResult,Time.oneWeekAgo(),'monthly'),
 
-        oneMonthAgo: dataclean.windowPerform(dailyResult, Time.oneMonthAgo(), 'monthly'),
+        oneMonthAgo: dataclean.monthlywindowPerform(dailyResult, Time.oneMonthAgo(), 'monthly'),
 
         sixMonthsAgo: dataclean.windowPerform(weeklyResult, Time.firstOfMonth(Time.sixMonthsAgo()), 'yearly'),
 
