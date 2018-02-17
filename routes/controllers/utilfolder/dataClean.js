@@ -29,6 +29,7 @@ const moment = require('moment');
 // 2. 24 hours
 
 function monthlywindowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours) {
+  console.log('were in here /////// YUP ', JSON.stringify(data) )
   let snapshotTime
 
   return data.reduce( (acum, priceHistObj) => {
