@@ -30,6 +30,7 @@ const moment = require('moment');
 
 function monthlywindowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours) {
   let snapshotTime
+  console.log(' //// ///// //// data', data)
 
   return data.reduce( (acum, priceHistObj) => {
     snapshotTime = Time.reformat(priceHistObj.created_at)
