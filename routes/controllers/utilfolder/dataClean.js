@@ -10,8 +10,6 @@ const moment = require('moment');
    *    i.e: 'hourly', 'monthly', 'yearly'
    * @param {undefined || () => true} comparisonDaysVsHours -
    *
-   *  ////
-   *
    * @returns {Object} acum - the windowData, the value of the portfolio back then and the xAxisInterval
    *    acum: {
    *      valueBackThen: null || 'yearly'
