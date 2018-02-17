@@ -34,7 +34,7 @@ CREATE TABLE performance_history_daily (
 );
 
 INSERT INTO users (username, hash_pass, created_at)
-  VALUES ('ianh', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6', '2016-12-11 11:00:00');
+  VALUES ('ianh', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6', '2017-2-17 11:12:00');
 
 INSERT INTO users (username, hash_pass, created_at)
     VALUES ('sam', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6', '2016-12-11 11:00:00');
