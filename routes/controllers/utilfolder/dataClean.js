@@ -114,6 +114,5 @@ function avgDailyToWeekly(dailyAvgData) {
 
 module.exports = {
   windowPerform,
-  monthlywindowPerform,
   avgDailyToWeekly
 }
