@@ -118,12 +118,12 @@ function avgDailyToWeekly(dailyAvgData) {
     let newWeeklyObj = (currVal) => {
       daysInMonth = 0
       returnObj = new Object()
-      // copiedDate = new Date(currVal.created_at.getTime())
+      copiedDate = new Date(currVal.created_at.getTime())
       returnObj = {
         user_id : currVal.user_id,
         portfolio_value : Number(currVal.portfolio_value),
         amount_eth : Number(currVal.amount_eth),
-        created_at: new Date(currVal.created_at.getTime().setDate(1))
+        created_at: copiedDate.setDate(1)
       }
     }
 
