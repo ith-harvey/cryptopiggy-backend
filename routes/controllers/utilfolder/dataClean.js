@@ -119,6 +119,7 @@ function avgDailyToWeekly(dailyAvgData) {
       daysInMonth = 0
       returnObj = new Object()
       copiedDate = new Date(currVal.created_at.getTime())
+      console.log('comied date', copiedDate)
       returnObj = {
         user_id : currVal.user_id,
         portfolio_value : Number(currVal.portfolio_value),
