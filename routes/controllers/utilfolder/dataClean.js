@@ -48,6 +48,7 @@ function monthlywindowPerform(data, maxTimeWindow, xAxisInterval, comparisonDays
 
     // if the maxTimewindow is before created_at price window, push into arr
     if (moment(maxTimeWindow).isSameOrBefore(snapshotTime)) {
+      console.log('snaptime', snapshotTime)
 
       if (comparisonDaysVsHours === undefined) {
         comparisonDaysVsHours = () => (Time.justTime(snapshotTime) === '00:00:00')
@@ -61,7 +62,7 @@ function monthlywindowPerform(data, maxTimeWindow, xAxisInterval, comparisonDays
           })
       }
     }
-    console.log('acum',acum)
+
     return acum
   }, {})
 }
