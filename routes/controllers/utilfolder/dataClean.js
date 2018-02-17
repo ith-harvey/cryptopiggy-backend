@@ -109,6 +109,7 @@ function windowPerform(data, maxTimeWindow, xAxisInterval, comparisonDaysVsHours
 
 
 function avgDailyToWeekly(dailyAvgData) {
+  dailyAvgData = dailyAvgData.slice(0)
   let returnObj = {}
   let daysInMonth = 0
 
