@@ -6,13 +6,11 @@ require('dotenv').config()
 
 const etherscanURL = 'https://api.etherscan.io/api?'
 
-const eScanApiKey = process.env.ETHSCAN_TOKEN
-
 let priceOfEthUSD
 
 function getBalanceMultiAddress(addressArr) {
   var options = {
-    uri: `${etherscanURL}module=account&action=balancemulti&address=${addressArr}&tag=latest&apikey=${eScanApiKey}`,
+    uri: `${etherscanURL}module=account&action=balancemulti&address=${addressArr}&tag=latest&apikey=${process.env.ETHSCAN_TOKEN}`,
     headers: {
         'User-Agent': 'Request-Promise'
     },
@@ -50,7 +48,7 @@ function mapEthPriceToAddressData(addressData, ArrofBalances, priceOfEthUSD) {
 function getEthPrice() {
   //comparer can be: ethusd or ethbtc
   let options = {
-    uri: `${etherscanURL}module=stats&action=ethprice&apikey=${eScanApiKey}`,
+    uri: `${etherscanURL}module=stats&action=ethprice&apikey=${process.env.ETHSCAN_TOKEN}`,
     headers: {
         'User-Agent': 'Request-Promise'
     },

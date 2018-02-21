@@ -4,6 +4,7 @@ const moment = require('moment');
 const { jwtUtils } = require('./utilfolder')
 const { ethscan } = require('./utilfolder')
 const { dataclean } = require('./utilfolder')
+const { dataFormat } = require('./utilfolder')
 const { Time } = require('./utilfolder')
 
 const { PerformanceHistoryHourly } = require('../../db')
@@ -19,51 +20,32 @@ function windowOfPerformance (req, res, next) {
 
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
-      console.log('were in here /////// ', JSON.stringify(dailyResult) )
 
-      let weeklyResult = dataclean.avgDailyToWeekly(dailyResult.slice(0))
-      console.log('were in here PT 2 /////// ', JSON.stringify(dailyResult))
-
-      let whnCreateLstArg = undefined
-      let xInterval, whenCreatedData
-
-      if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
-        xInterval = 'yearly'
-        whenCreatedData = weeklyResult
-        whenCreated = Time.firstOfMonth(whenCreated)
-
-      } else if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.sixMonthsAgo()))) {
-        xInterval = 'yearly'
-        whenCreatedData = weeklyResult
-        whenCreated = Time.firstOfMonth(whenCreated)
-
-      } else if (moment(whenCreated).isSameOrBefore(Time.oneWeekAgo())) {
-        xInterval = 'monthly'
-        whenCreatedData = dailyResult
-
-      } else {
-        xInterval = 'hourly'
-        whenCreatedData = hourlyResult
-        whnCreateLstArg = () => true
+      let data = {
+        hourly: hourlyResult,
+        daily: dailyResult,
+        weekly: dataclean.avgDailyToWeekly(data.daily.slice(0))
       }
 
+      let whnCreatedInfo = dataFormat.setWhnCreatedInfo(whenCreated, data)
+
       const returnObj = {
-        aDayAgo: dataclean.windowPerform(hourlyResult, Time.aDayAgo(),'hourly', () => true),
+        aDayAgo: dataclean.windowPerform(data.hourly, Time.aDayAgo(),'hourly', () => true),
 
-        oneWeekAgo: dataclean.windowPerform(dailyResult,Time.oneWeekAgo(),'monthly'),
+        oneWeekAgo: dataclean.windowPerform(data.daily, Time.oneWeekAgo(),'monthly'),
 
-        oneMonthAgo: dataclean.windowPerform(dailyResult, Time.oneMonthAgo(), 'monthly'),
+        oneMonthAgo: dataclean.windowPerform(data.daily, Time.oneMonthAgo(), 'monthly'),
 
-        sixMonthsAgo: dataclean.windowPerform(weeklyResult, Time.firstOfMonth(Time.sixMonthsAgo()), 'yearly'),
+        sixMonthsAgo: dataclean.windowPerform(data.weekly, Time.firstOfMonth(Time.sixMonthsAgo()), 'yearly'),
 
-        oneYearAgo: dataclean.windowPerform(weeklyResult, Time.firstOfMonth(Time.aYearAgo()), 'yearly'),
+        oneYearAgo: dataclean.windowPerform(data.weekly, Time.firstOfMonth(Time.aYearAgo()), 'yearly'),
 
-        whenCreated: dataclean.windowPerform(whenCreatedData, whenCreated, xInterval, whnCreateLstArg)
+        whenCreated: dataclean.windowPerform(whnCreatedInfo.data, whenCreated, whnCreatedInfo.xInterval, whnCreatedInfo.whnCreateLstArg)
       }
 
       res.send(returnObj)
 
-      /*final returnObj = {
+      /*returnObj = {
             twoWeeksAgo: {
               value: XXXX.XX / null,
               data: [[created_at, portfolio_value: 24333]]

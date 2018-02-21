@@ -6,7 +6,6 @@ class Time {
   constructor() {}
 
   static setup(modifier) {
-
     if (modifier) this.today = new Date(modifier)
     else this.today = new Date()
     this.time = '12:00:00'
@@ -48,7 +47,6 @@ class Time {
     // returns 6 Months ago but on the 1st
     this.setup()
     let sixMonthDate = this.today.setMonth(this.today.getMonth() - 6)
-     // ((this.today.getFullYear())+'-'+(this.today.getMonth()-5)+'-'+this.today.getDate());
     return moment(sixMonthDate, 'x').format('MM/DD/YYYY HH:mm:ss');
   }
 
