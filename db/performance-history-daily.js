@@ -22,6 +22,7 @@ class PerformanceHistoryDaily extends Resource {
   }
 
   static getWindow(user_id, maxPerfWindow) {
+    console.log('our window:', maxPerfWindow)
     return db.any(`SELECT * FROM performance_history_daily
       WHERE user_id = ${user_id}
       AND created_at >= '${maxPerfWindow}';`)

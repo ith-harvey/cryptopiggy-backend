@@ -15,12 +15,11 @@ const { Auth } = require('../../db')
 function windowOfPerformance (req, res, next) {
   const id =  jwtUtils.parseToken(req.body.token).id.toString()
   Auth.getUserById(id).then( response => {
-    console.log('when it was actually created:', response.created_at)
     let whenCreated = Time.addHourResetToZeros(response.created_at)
     console.log('when it was actually created:', whenCreated.day)
   PerformanceHistoryHourly.getWindow(id, whenCreated.hr).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated.day).then( dailyResult => {
-      console.log('our daily double: ', dailyResult)
+      console.log('our daily data: ', dailyResult)
       let data = {
         hourly: hourlyResult,
         daily: dailyResult,
@@ -29,10 +28,10 @@ function windowOfPerformance (req, res, next) {
 
       let whnCreatedInfo = dataFormat.setWhnCreatedInfo(whenCreated, data)
 
-      console.log('data: ', whnCreatedInfo.data )
-      console.log('whenCreated: ', whenCreated )
-      console.log('Interval: ', whnCreatedInfo.xInterval )
-      console.log('lstArg: ', whnCreatedInfo.whnCreateLstArg)
+      // console.log('data: ', whnCreatedInfo.data )
+      // console.log('whenCreated: ', whenCreated )
+      // console.log('Interval: ', whnCreatedInfo.xInterval )
+      // console.log('lstArg: ', whnCreatedInfo.whnCreateLstArg)
 
       const returnObj = {
         aDayAgo: dataclean.windowPerform(data.hourly, Time.aDayAgo(),'hourly', () => true),
