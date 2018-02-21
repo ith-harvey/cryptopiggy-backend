@@ -27,7 +27,7 @@ const moment = require('moment');
      returnObj.data = data.weekly
      // returnObj.whenCreated = Time.firstOfMonth(whenCreated)
 
-   } else if (moment(whenCreated).isSameOrBefore(Time.oneWeekAgo())) {
+   } else if (moment(whenCreated).isSameOrBefore(Time.aDayAgo())) {
      returnObj.xInterval = 'monthly'
      returnObj.data = data.daily
 
