@@ -24,10 +24,15 @@ function windowOfPerformance (req, res, next) {
       let data = {
         hourly: hourlyResult,
         daily: dailyResult,
-        weekly: dataclean.avgDailyToWeekly(data.daily.slice(0))
+        weekly: dataclean.avgDailyToWeekly(dailyResult.slice(0))
       }
 
       let whnCreatedInfo = dataFormat.setWhnCreatedInfo(whenCreated, data)
+
+      console.log('data: ', whnCreatedInfo.data )
+      console.log('whenCreated: ', whenCreated )
+      console.log('Interval: ', whnCreatedInfo.xInterval )
+      console.log('lstArg: ', whnCreatedInfo.whnCreateLstArg)
 
       const returnObj = {
         aDayAgo: dataclean.windowPerform(data.hourly, Time.aDayAgo(),'hourly', () => true),
