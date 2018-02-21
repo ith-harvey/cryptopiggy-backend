@@ -17,7 +17,7 @@ function windowOfPerformance (req, res, next) {
   Auth.getUserById(id).then( response => {
     console.log('when it was actually created:', response.created_at)
     let whenCreated = Time.addHourResetToZeros(response.created_at)
-    console.log('when it was actually created:', whenCreated)
+    console.log('when it was actually created:', whenCreated.day)
   PerformanceHistoryHourly.getWindow(id, whenCreated.hr).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated.day).then( dailyResult => {
       console.log('our daily double: ', dailyResult)
