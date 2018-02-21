@@ -65,10 +65,16 @@ class Time {
     return date
   }
 
-  static addHourReformatResetToZeros(date) {
-    date = moment(date, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).milliseconds(0)
-    console.log('date test', date)
-    return this.reformat(date)
+  static addHourResetToZeros(date) {
+    let dateHour = moment(date, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).milliseconds(0)
+    let dateDay = moment(date, 'YYYY-MM-DD').hours(0).minutes(0).seconds(0).milliseconds(0)
+
+    console.log('date test 1', dateHour)
+    console.log('date test 2', dateHour)
+    return {
+      hr: this.reformat(dateHour),
+      day: this.reformat(dateDay)
+    }
   }
 
 }

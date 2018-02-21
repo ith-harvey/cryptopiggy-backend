@@ -16,10 +16,10 @@ function windowOfPerformance (req, res, next) {
   const id =  jwtUtils.parseToken(req.body.token).id.toString()
   Auth.getUserById(id).then( response => {
     console.log('when it was actually created:', response.created_at)
-    let whenCreated = Time.addHourReformatResetToZeros(response.created_at)
+    let whenCreated = Time.addHourResetToZeros(response.created_at)
     console.log('when it was actually created:', whenCreated)
-  PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
-    PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
+  PerformanceHistoryHourly.getWindow(id, whenCreated.hr).then( hourlyResult => {
+    PerformanceHistoryDaily.getWindow(id, whenCreated.day).then( dailyResult => {
       console.log('our daily double: ', dailyResult)
       let data = {
         hourly: hourlyResult,
