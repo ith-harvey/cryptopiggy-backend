@@ -67,6 +67,7 @@ class Time {
 
   static addHourReformatResetToZeros(date) {
     date = moment(date, 'YYYY-MM-DD').add(1,'h').minutes(0).seconds(0).milliseconds(0)
+    console.log('date test', date)
     return this.reformat(date)
   }
 
