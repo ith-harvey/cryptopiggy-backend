@@ -70,7 +70,7 @@ class Time {
     let dateDay = moment(date, 'YYYY-MM-DD').hours(0).minutes(0).seconds(0).milliseconds(0)
 
     console.log('date test 1', dateHour)
-    console.log('date test 2', dateHour)
+    console.log('date test 2', dateDay)
     return {
       hr: this.reformat(dateHour),
       day: this.reformat(dateDay)
