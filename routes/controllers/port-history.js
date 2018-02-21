@@ -20,7 +20,7 @@ function windowOfPerformance (req, res, next) {
 
   PerformanceHistoryHourly.getWindow(id, whenCreated).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated).then( dailyResult => {
-
+      console.log('our daily double: ', dailyResult)
       let data = {
         hourly: hourlyResult,
         daily: dailyResult,

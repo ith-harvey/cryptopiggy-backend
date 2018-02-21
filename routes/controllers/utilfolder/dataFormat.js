@@ -4,11 +4,7 @@ const moment = require('moment');
 
  let setWhnCreatedInfo = (whenCreated, data) => {
 
-   // let data = {
-   //   hourly: hourlyResult,
-   //   daily: dailyResult,
-   //   weekly: dataclean.avgDailyToWeekly(data.daily.slice(0))
-   // }
+   // below function is correct. However, I discovered an issue with the cronjob. The day the account is created we need to be averaging and storing that day's values
 
    let returnObj = {
      xInterval: '',
