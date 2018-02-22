@@ -49,6 +49,7 @@ function averageUserValues(response) {
       }
       return acc
       },[])
+
       return reduce[0]
   })
 }
