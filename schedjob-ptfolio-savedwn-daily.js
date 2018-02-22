@@ -92,7 +92,8 @@ function initiateTask() {
       response = averageUserValues(response)
 
     const insertPromiseArr = response.map( priceObj => {
-      console.log('time insert', dateMinRounded())
+      // console.log('time insert', dateMinRounded())
+      console.log('what we are inserting', priceObj)
         // insert to db
         return PerformanceHistoryDaily.savePrice(priceObj,dateMinRounded())
     })
