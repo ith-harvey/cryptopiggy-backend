@@ -55,9 +55,9 @@ INSERT INTO addresses (user_id, address)
 --
 -- SELECT 2, generate_series('2016-12-11 12:00:00'::timestamp,'2017-12-11 11:00:00'::timestamp,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
 
-INSERT INTO performance_history_hourly (user_id, created_at, portfolio_value, amount_eth)
-
-SELECT 1, generate_series('2018-2-22 17:00:00'::timestamp,'2018-2-23 2:00:00'::timestamp,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
+-- INSERT INTO performance_history_hourly (user_id, created_at, portfolio_value, amount_eth)
+--
+-- SELECT 1, generate_series('2018-2-22 17:00:00'::timestamp,'2018-2-23 2:00:00'::timestamp,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
 
 -- INSERT INTO performance_history_daily (user_id, created_at, portfolio_value, amount_eth)
 --
