@@ -34,7 +34,7 @@ CREATE TABLE performance_history_daily (
 );
 
 INSERT INTO users (username, hash_pass, created_at)
-  VALUES ('ianh', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6', '2017-2-21 16:01:00');
+  VALUES ('ianh', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6', '2017-2-22 16:01:00');
 
 -- INSERT INTO users (username, hash_pass, created_at)
 --     VALUES ('sam', '$2a$10$VBX3tQbf/dj6Y73TMrOakeNUQe.6u.wtbnpl/w8wFiWtWrzDp.oY6', '2016-12-11 11:00:00');
@@ -57,7 +57,7 @@ INSERT INTO addresses (user_id, address)
 
 INSERT INTO performance_history_hourly (user_id, created_at, portfolio_value, amount_eth)
 
-SELECT 1, generate_series('2018-2-21 17:00:00'::timestamp,'2018-2-22 17:00:00'::timestamp,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
+SELECT 1, generate_series('2018-2-22 17:00:00'::timestamp,'2018-2-23 2:00:00'::timestamp,'1 hour'::interval),to_char((random()*20000),'FM99999'),to_char((random()*300), 'FM999');
 
 -- INSERT INTO performance_history_daily (user_id, created_at, portfolio_value, amount_eth)
 --
