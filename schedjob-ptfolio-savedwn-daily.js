@@ -57,7 +57,8 @@ function averageUserValues(response) {
 function arrayOfBalancePromises(users) {
   return users.map( user => { //maps over users returns Promises
     return PerformanceHistoryHourly.getWindow(user.id,Time.aDayAgo())
-      .then(response => {
+      .then(response =>
+        console.log('performhistHourly get request', response)
         return response
       }).catch(err => {
         console.log('error!!!', err)
@@ -88,7 +89,7 @@ function initiateTask() {
 
   // run balance of All addresses
   getUsersAndBalanceForInsert().then(response => {
-
+    console.log('what we play with', response)
     // get back the array of objects we will insert {user_id, value, amount_eth}
       response = averageUserValues(response)
 
