@@ -77,6 +77,7 @@ function getUsersAndBalanceForInsert() {
 
 function dateMinRounded() {
     let date = new Date()
+    console.log('pull date', date)
     date.setHours(-24,0,0,0);
 
     return date.toISOString().slice(0, 19).replace('T', ' ')
