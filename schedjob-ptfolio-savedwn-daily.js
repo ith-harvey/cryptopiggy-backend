@@ -56,6 +56,7 @@ function averageUserValues(response) {
 
 function arrayOfBalancePromises(users) {
   return users.map( user => { //maps over users returns Promises
+    console.log('time a day go', Time.aDayAgo())
     return PerformanceHistoryHourly.getWindow(user.id,Time.aDayAgo())
       .then(response => {
         console.log('performhistHourly get request', response)
