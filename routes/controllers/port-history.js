@@ -19,7 +19,6 @@ function windowOfPerformance (req, res, next) {
     console.log('when it was actually created:', whenCreated.day)
   PerformanceHistoryHourly.getWindow(id, whenCreated.hr).then( hourlyResult => {
     PerformanceHistoryDaily.getWindow(id, whenCreated.day).then( dailyResult => {
-      console.log('our daily data: ', dailyResult)
       let data = {
         hourly: hourlyResult,
         daily: dailyResult,
@@ -27,6 +26,8 @@ function windowOfPerformance (req, res, next) {
       }
 
       let whnCreatedInfo = dataFormat.setWhnCreatedInfo(whenCreated, data)
+
+      console.log('whenCreated: ', whnCreatedInfo.whenCreated)
 
       // console.log('data: ', whnCreatedInfo.data )
       // console.log('whenCreated: ', whenCreated )
