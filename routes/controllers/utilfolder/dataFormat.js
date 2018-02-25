@@ -8,7 +8,7 @@ const moment = require('moment');
 
    // Yes I can confirm there is an issue in cronjobs when the day of the account creation happens we are not averaging the 'daily' values and storing them.
 
-   
+
 
    let returnObj = {
      xInterval: '',
@@ -20,20 +20,22 @@ const moment = require('moment');
    if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.aYearAgo()))) {
      returnObj.xInterval = 'yearly'
      returnObj.data = data.weekly
-     // returnObj.whenCreated = Time.firstOfMonth(whenCreated)
+     returnObj.whenCreated = Time.firstOfMonth(whenCreated)
 
    } else if (moment(Time.firstOfMonth(whenCreated)).isSameOrBefore(Time.firstOfMonth(Time.sixMonthsAgo()))) {
      returnObj.xInterval = 'yearly'
      returnObj.data = data.weekly
-     // returnObj.whenCreated = Time.firstOfMonth(whenCreated)
+     returnObj.whenCreated = Time.firstOfMonth(whenCreated)
 
    } else if (moment(whenCreated).isSameOrBefore(Time.aDayAgo())) {
      returnObj.xInterval = 'monthly'
      returnObj.data = data.daily
+     returnObj.whenCreated = whenCreated.day
 
    } else {
      returnObj.xInterval = 'hourly'
      returnObj.data = data.hourly
+     returnObj.whenCreated = whenCreated.hr
      returnObj.whnCreateLstArg = () => true
    }
    return returnObj
